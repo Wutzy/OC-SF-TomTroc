@@ -16,13 +16,23 @@
     <title>Tom Troc</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
+<div class="container">
     <header>
         <nav>
-            <a href="index.php">Messagerie</a>
-            <a href="index.php?action=apropos">Mon compte</a>
-            <a href="index.php?action=monitoring">Connexion</a>
+            <img src="views/assets/logo.svg" alt="logo TomTroc" height="51" width="155" />
+            <div class="menu">
+                <div class="menu-left-side">
+                    <a href="#">Accueil</a>
+                    <a href="#">Nos livres à l'échange</a>
+                </div>
+                <div class="menu-right-side">
+                    <a href="#">Messagerie</a>
+                    <a href="#">Mon compte</a>
+                    <a href="#">Connexion</a>        
+                </div>
+            </div>
+            
             <?php
                 // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion :
                 if (isset($_SESSION['user'])) {
@@ -30,7 +40,6 @@
                 }
                 ?>
         </nav>
-        <h1>Tom Troc</h1>
     </header>
 
     <main>
@@ -38,8 +47,10 @@
     </main>
 
     <footer>
-        <p>Copyright © Tom Troc 2024 - Openclassrooms - <a href="index.php?action=admin">Admin</a>
+        <p>Copyright © Tom Troc 2024 - Openclassrooms -
     </footer>
+</div>
+    
 
 </body>
 </html>

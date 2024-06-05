@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(font/Inter/Inter-VariableFont_slnt\,wght.ttf);
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src: url(font/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf);
+}
+
+
+* {
+    font-family: Inter;
+}
+h2 {
+    font-family: Playfair Display;
+    font-weight: 400;
+}
+body{
+    margin: unset;
+}
+.container { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+header{
+    display: flex;
+    justify-content: center;
+    background-color: #F5F3EF;
+    padding-top: 10px;
+}
+main, header{
+    width: 100%;
+}
+
+/* Menu */
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1440px;
+}
+.menu {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 80px;
+    width: 100%;
+}
+.menu a {
+    text-decoration: none;
+    color: unset;
+    margin-left: 20px;
+}
+/* Join us Section */
+.home-top-page {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    width:100%;
+    background-color: #F5F3EF;
+}
+.joinus-container {
+    display: flex;
+    justify-content: center;
+    width: 920px;
+}
+
+.joinus {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    width: 50%;
+}
+.joinus-title, .joinus-speech {
+   width: 329px;     
+}
+.joinus-title h2{
+    font-size: 36px;
+}
+.joinus-speech {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19.36px;
+}
+.btn-discover{
+    padding: 22px 38px 22px 38px;
+    color: white;
+    background-color: #00AC66;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.img-joinus {
+}
+
+/* Last books section */
+.home-books-section {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    width:100%;
+    background-color: #FAF9F7;
+}
+.last-books-container h2{
+    font-size: 32px;
+}
+.card-book {
+    border: 1px black solid;
+    width: 200px;
+}
+.last-book-img{
+    width: 200px;
+    height: 200px;
+}
+
+    
+
