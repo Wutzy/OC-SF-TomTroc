@@ -12,11 +12,16 @@ class BookManager extends AbstractEntityManager
 
     /**
      * Récupère tous les books.
+     * @param bool $limited
      * @return array : un tableau d'objets Book.
+     * 
      */
-    public function getAllBooks() : array
+    public function getAllBooks(bool $limited = false) : array
     {
         $sql = "SELECT * FROM book";
+        if ($limited) {
+            $sql .= " LIMIT 4";
+        }
 
         $result = $this->db->query($sql);
         $books = [];
