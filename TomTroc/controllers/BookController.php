@@ -10,7 +10,6 @@ class BookController
     {
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks(true);
-
         $view = new View("Accueil");
         $view->render("home", ['books' => $books]);
     }
@@ -26,7 +25,6 @@ class BookController
 
         $articleManager = new ArticleManager();
         $article = $articleManager->getArticleById($id);
-        //var_dump($article);die;
         $articleManager->updateArticleViews($article);
 
         if (!$article) {

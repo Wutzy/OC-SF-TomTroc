@@ -15,7 +15,7 @@
                     Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.
                 </p>
                 <button class="btn-discover">Découvrir</button>
-            </div>                
+            </div>
         </div>
         <div class="img-joinus">
             <img src="https://placehold.co/404x539" alt="">
@@ -31,11 +31,11 @@
         <div class="last-books-group">
             <?php foreach($books as $book) { ?>
                 <div class="card-book">
-                    <a class="info" href="index.php?action=showArticle&id=<?= $book->getId() ?>">                
+                    <a class="info" href="index.php?action=showArticle&id=<?= $book->getId() ?>">
                         <img src="<?= $book->getImage() ?>" alt="une image" class="last-book-img">
                         <div class="card-content">
                             <div class="last-books-title"><p><?= $book->getTitle() ?></p></div>
-                            <div class="last-books-author"><p>Auteur</p></div>
+                            <div class="last-books-author"><p><?= $book->author_name .' ' . $book->author_forname ?></p></div>
                             <div class="last-books-"><p>Vendeur</p></div>
                         </div>
                     </a>
@@ -44,9 +44,9 @@
         </div>
         <div class="show-books">
             <div class="btn-show-books">
-                <a href="#">Voir tous les livres</a>   
-            </div>     
-        </div> 
+                <a href="#">Voir tous les livres</a>
+            </div>
+        </div>
     </div>
 </section>
 <section class="howitworks-section">
@@ -67,9 +67,40 @@
             <div class="howitworks-card">
                 <p>Parcourez les livres disponibles chez d'autres membres.</p>
             </div>
-            <div class="howitworks-card">   
+            <div class="howitworks-card">
                 <p>Proposez un échange et discutez avec d'autres passionés de lecture.</p>
             </div>
+        </div>
+        <div class="show-books">
+            <div class="btn-light-show-books">
+                <a href="#">Voir tous les livres</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="banner">
+        <img src="views/assets/home-books-banner.png" alt="">
+    </div>
+    <div class="values">
+        <div class="values-title">
+            Nos valeurs
+        </div>
+        <div class="values-speech">
+            <p>
+            Chez Tom Troc, nous mettons l'accent sur le partage,
+            la découverte et la communauté. Nos valeurs sont ancrées
+            dans notre passion pour les livres et notre désir de créer des
+            liens entre les lecteurs. Nous croyons en la puissance des histoires
+            pour rassembler les gens et inspirer des conversations enrichissantes.
+            <p>
+            Notre association a été fondée avec une conviction profonde :
+            chaque livre mérite d'être lu et partagé.
+            </p>
+            <p>
+            Nous sommes passionnés par la création d'une plateforme conviviale qui permet aux lecteurs
+            de se connecter, de partager leurs découvertes littéraires et d'échanger des livres
+            qui attendent patiemment sur les étagères.
         </div>
     </div>
 </section>

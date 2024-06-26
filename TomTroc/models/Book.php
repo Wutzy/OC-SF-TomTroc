@@ -7,6 +7,9 @@
  class Book extends AbstractEntity
  {
     private int $idUser;
+    private int $author_id;
+    public ?string $author_name;
+    public ?string $author_forname;
     private string $title = "";
     private string $description = "";
     private string $image = "";
@@ -28,6 +31,24 @@
     public function getIdUser() : int
     {
         return $this->idUser;
+    }
+
+    /**
+     * Setter pour l'id de l'utilisateur.
+     * @param int $idUser
+     */
+    public function setAuthorId(int $author_id) : void
+    {
+        $this->author_id = $author_id;
+    }
+
+    /**
+     * Getter pour l'id de l'utilisateur.
+     * @return int
+     */
+    public function getAuthorId() : int
+    {
+        return $this->author_id;
     }
 
     /**
@@ -120,4 +141,4 @@
         return $this->dateCreation;
     }
 
- }
+}

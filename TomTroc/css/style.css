@@ -14,6 +14,10 @@
 section{
     width: 100%;
 }
+footer{
+    width: 100%;
+    background-color: white;
+}
 a {
     text-decoration: none;
     color: unset;
@@ -25,7 +29,7 @@ h2 {
 body{
     margin: unset;
 }
-.container { 
+.container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -72,12 +76,12 @@ nav{
 
 .joinus {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     justify-content: center;
     width: 50%;
 }
 .joinus-title, .joinus-speech {
-   width: 329px;     
+   width: 329px;
 }
 .joinus-title h2{
     font-size: 36px;
@@ -153,7 +157,7 @@ nav{
 .btn-show-books{
     width: 218px;
     height: 63px;
-    font-size: 16px;   
+    font-size: 16px;
     display: flex;
     padding: 12px 28px 12px 28px;
     color: white;
@@ -189,7 +193,7 @@ nav{
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal; 
+    line-height: normal;
 }
 .howitworks-description {
     width: 397px;
@@ -204,12 +208,13 @@ nav{
     display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-bottom: 50px;
 }
 
 .howitworks-card{
     width: 215px;
     height: 139px;
-    flex-shrink: 0; 
+    flex-shrink: 0;
     width: 215px;
     border-radius: 10px;
     background: #FFF;
@@ -231,7 +236,53 @@ nav{
     line-height: normal;
     text-align: center;
 }
+.btn-light-show-books{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 218px;
+    height: 63px;
+    font-size: 16px;
+    padding: 12px 28px 12px 28px;
+    color: #00AC66;
+    background-color: white;
+    border: 1px solid #00AC66;
+    border-radius: 10px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+}
+
+/** Values section **/
+.banner img{
+    width: 100%;
+    margin-bottom: 50px;
+}
+.values{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #292929;
+}
+.values-title{
+
+    font-family: "Playfair Display";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.values-speech{
+    width: 394px;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
 
 
-    
+
+
 

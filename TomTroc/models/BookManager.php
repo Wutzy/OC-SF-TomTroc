@@ -7,14 +7,14 @@ class BookManager extends AbstractEntityManager
 {
     const COLUMNS = [
         'title' => 'Titre',
-        'date_creation' => 'Date de création',    
-    ];  
+        'date_creation' => 'Date de création',
+    ];
 
     /**
      * Récupère tous les books.
      * @param bool $limited
      * @return array : un tableau d'objets Book.
-     * 
+     *
      */
     public function getAllBooks(bool $limited = false) : array
     {
@@ -25,9 +25,15 @@ class BookManager extends AbstractEntityManager
 
         $result = $this->db->query($sql);
         $books = [];
-
         while ($book = $result->fetch()) {
-            $books[] = new Book($book);
+
+            $author = self::getAuthorByBookId($book['author_id']);
+            $newBook = new Book($book);
+            $newBook->author_name = $author->name;
+            $newBook->author_forname = $author->forname;
+
+            array_push($books, $newBook);
+
         }
 
         return $books;
@@ -61,6 +67,22 @@ class BookManager extends AbstractEntityManager
         $book = $result->fetch();
         if ($book) {
             return new Book($book);
+        }
+        return null;
+    }
+
+    /**
+     * Récupère tous les books ordonnés par une colone (titre ou date de création)
+     * @param int: id's book
+     * @return Author|null : un objet Author ou null si l'author n'existe pas.
+     */
+    public function getAuthorByBookId(int $id) : ?Author
+    {
+        $sql = "SELECT name, forname FROM author LEFT JOIN book ON author.id = book.author_id WHERE author.id = :id";
+        $result = $this->db->query($sql, ['id' => $id]);
+        $author = $result->fetch();
+        if ($author) {
+            return new Author($author);
         }
         return null;
     }
