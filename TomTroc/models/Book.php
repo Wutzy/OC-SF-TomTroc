@@ -10,9 +10,9 @@
     private int $author_id;
     public ?string $author_name;
     public ?string $author_forname;
-    private string $title = "";
-    private string $description = "";
-    private string $image = "";
+    public string $title = "";
+    public string $description = "";
+    public string $image = "";
     private ?DateTime $dateCreation = null;
 
     /**

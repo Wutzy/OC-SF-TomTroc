@@ -17,6 +17,16 @@ try {
             $bookController->showHome();
             break;
 
+        case 'ourBooks':
+            $bookController = new BookController();
+            $bookController->showBooksCollection();
+            break;
+
+        case 'showBook':
+            $bookController = new BookController();
+            $bookController->showBook();
+            break;
+
         case 'connectionForm':
             $adminController = new AdminController();
             $adminController->displayConnectionForm();

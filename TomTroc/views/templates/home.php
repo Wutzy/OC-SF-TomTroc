@@ -1,6 +1,6 @@
 <?php
     /**
-     * Affichage de Liste des articles.
+     * Affichage de la page d'accueil
      */
 ?>
 
@@ -78,7 +78,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="values-section grey-bg">
     <div class="banner">
         <img src="views/assets/home-books-banner.png" alt="">
     </div>

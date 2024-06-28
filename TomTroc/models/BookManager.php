@@ -5,10 +5,6 @@
  */
 class BookManager extends AbstractEntityManager
 {
-    const COLUMNS = [
-        'title' => 'Titre',
-        'date_creation' => 'Date de création',
-    ];
 
     /**
      * Récupère tous les books.
@@ -66,7 +62,12 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['id' => $id]);
         $book = $result->fetch();
         if ($book) {
-            return new Book($book);
+            $author = self::getAuthorByBookId($book['author_id']);
+            $selectedBook = new Book($book);
+            $selectedBook->author_name = $author->name;
+            $selectedBook->author_forname = $author->forname;
+
+            return $selectedBook;
         }
         return null;
     }

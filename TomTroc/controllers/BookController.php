@@ -18,24 +18,33 @@ class BookController
      * Affiche le détail d'un article.
      * @return void
      */
-    public function showArticle() : void
+    public function showBooksCollection() : void
     {
-        // Récupération de l'id de l'article demandé.
+
+        $bookManager = new BookManager();
+        $books = $bookManager->getAllBooks();
+
+        $view = new View("Nos livres à l'échange");
+        $view->render("ourBooks", ['books' => $books]);
+    }
+
+    /**
+     * Affiche le détail d'un livre.
+     * @return void
+     */
+    public function showBook() : void
+    {
+        // Récupération de l'id du livre demandé.
         $id = Utils::request("id", -1);
 
-        $articleManager = new ArticleManager();
-        $article = $articleManager->getArticleById($id);
-        $articleManager->updateArticleViews($article);
-
-        if (!$article) {
-            throw new Exception("L'article demandé n'existe pas.");
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.");
         }
 
-        $commentManager = new CommentManager();
-        $comments = $commentManager->getAllCommentsByArticleId($id);
-
-        $view = new View($article->getTitle());
-        $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
+        $view = new View($book->getTitle());
+        $view->render("bookDetails", ['book' => $book]);
     }
 
     /**

@@ -23,8 +23,8 @@
             <img src="views/assets/logo.svg" alt="logo TomTroc" height="51" width="155" />
             <div class="menu">
                 <div class="menu-left-side">
-                    <a href="#">Accueil</a>
-                    <a href="#">Nos livres à l'échange</a>
+                    <a href="index.php">Accueil</a>
+                    <a href="index.php?action=ourBooks">Nos livres à l'échange</a>
                 </div>
                 <div class="menu-right-side">
                     <a href="#">Messagerie</a>
