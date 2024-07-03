@@ -8,6 +8,8 @@
  {
     private int $idUser;
     private int $author_id;
+    private int $owner_id;
+    public string $owner_nickname;
     public ?string $author_name;
     public ?string $author_forname;
     public string $title = "";

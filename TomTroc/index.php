@@ -27,6 +27,11 @@ try {
             $bookController->showBook();
             break;
 
+        case 'showLoginPage':
+            $userController = new UserController();
+            $userController->showLoginPage();
+            break;
+
         case 'connectionForm':
             $adminController = new AdminController();
             $adminController->displayConnectionForm();

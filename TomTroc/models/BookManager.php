@@ -63,9 +63,11 @@ class BookManager extends AbstractEntityManager
         $book = $result->fetch();
         if ($book) {
             $author = self::getAuthorByBookId($book['author_id']);
+            $owner = self::getOwnerByBookId($book['owner_id']);
             $selectedBook = new Book($book);
             $selectedBook->author_name = $author->name;
-            $selectedBook->author_forname = $author->forname;
+            $selectedBook->author_forname = $author->forname;            
+            $selectedBook->owner_nickname = $owner->nickname;
 
             return $selectedBook;
         }
@@ -84,6 +86,22 @@ class BookManager extends AbstractEntityManager
         $author = $result->fetch();
         if ($author) {
             return new Author($author);
+        }
+        return null;
+    }
+
+    /**
+     * Récupère le propriétaire d'un livre à partir de son id
+     * @param int: id's book
+     * @return User|null : un objet User ou null si le propriétaire n'existe pas.
+     */
+    public function getOwnerByBookId(int $id) : ?User
+    {
+        $sql = "SELECT nickname FROM user LEFT JOIN book ON user.id = book.owner_id WHERE user.id = :id";
+        $result = $this->db->query($sql, ['id' => $id]);
+        $owner = $result->fetch();
+        if ($owner) {
+            return new User($owner);
         }
         return null;
     }
