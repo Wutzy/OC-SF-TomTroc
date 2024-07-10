@@ -27,14 +27,19 @@ try {
             $bookController->showBook();
             break;
 
-        case 'showLoginPage':
+        case 'showLogInPage':
             $userController = new UserController();
-            $userController->showLoginPage();
+            $userController->showLogInPage();
             break;
 
-        case 'connectionForm':
-            $adminController = new AdminController();
-            $adminController->displayConnectionForm();
+        case 'showSignUpPage':
+            $userController = new UserController();
+            $userController->showSignUpPage();
+            break;
+
+        case 'myAccount':
+            $userController = new UserController();
+            $userController->showMyAccountPage();
             break;
 
         case 'connectUser':
