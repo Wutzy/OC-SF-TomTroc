@@ -42,7 +42,30 @@
             </div>
         </div>
         <div class="my-books">
-
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">
+                        <a href="#">Photo</a>
+                        </th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Auteur</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Disponibilité</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($articles as $article) { ?>
+                        <tr>
+                            <th scope="row"><?= $article->getTitle() ?></th>
+                            <td><?= $article->getViews() ?></td>
+                            <td><?= $article->getCommentCount() ?></td>
+                            <td><?= ucfirst(Utils::convertDateToFrenchFormat($article->getDateCreation())) ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </section>

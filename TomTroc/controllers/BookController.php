@@ -48,6 +48,26 @@ class BookController
     }
 
     /**
+     * Affiche les livres d'un utilisateurs
+     * @return void
+     */
+    public function showBooksByUser() : void
+    {
+        // Récupération de l'id du livre demandé.
+        $id = Utils::request("id", -1);
+
+        $bookManager = new BookManager();
+        $books = $bookManager->getAllBooks(true);
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.");
+        }
+
+        $view = new View("Mon compte");
+        $view->render("myAccount", ['books' => $books]);
+    }
+
+
+    /**
      * Affiche le formulaire d'ajout d'un article.
      * @return void
      */
