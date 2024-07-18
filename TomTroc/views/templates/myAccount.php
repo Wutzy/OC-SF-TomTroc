@@ -1,5 +1,5 @@
-<?php 
-    /** 
+<?php
+    /**
      *  Page Mon compte
      */
 ?>
@@ -56,12 +56,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($articles as $article) { ?>
+                    <?php foreach ($books as $book) { ?>
                         <tr>
-                            <th scope="row"><?= $article->getTitle() ?></th>
-                            <td><?= $article->getViews() ?></td>
-                            <td><?= $article->getCommentCount() ?></td>
-                            <td><?= ucfirst(Utils::convertDateToFrenchFormat($article->getDateCreation())) ?></td>
+                            <th scope="row"><?= $book->title ?></th>
                         </tr>
                     <?php } ?>
                 </tbody>

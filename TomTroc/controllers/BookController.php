@@ -48,10 +48,10 @@ class BookController
     }
 
     /**
-     * Affiche les livres d'un utilisateurs
+     * Affiche les livres d'un utilisateur
      * @return void
      */
-    public function showBooksByUser() : void
+    public function showBooksByUserId(int $user_id) : void
     {
         // Récupération de l'id du livre demandé.
         $id = Utils::request("id", -1);

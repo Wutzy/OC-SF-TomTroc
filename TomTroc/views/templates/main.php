@@ -28,7 +28,7 @@
                 </div>
                 <div class="menu-right-side">
                     <a href="#">Messagerie</a>
-                    <a href="#">Mon compte</a>
+                    <a href="index.php?action=myAccount">Mon compte</a>
                     <a href="index.php?action=showLogInPage">Connexion</a>
                 </div>
             </div>

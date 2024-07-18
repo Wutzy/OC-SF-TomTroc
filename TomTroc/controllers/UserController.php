@@ -28,8 +28,11 @@ class UserController
      */
     public function showMyAccountPage() : void
     {
+        $booksManager = new BookManager();
+        $books = $booksManager->getBooksByUserId(1);
+
         $view = new View("Page mon compte");
-        $view->render("myAccount", []);
+        $view->render("myAccount", ['books' => $books]);
     }
 
 }
