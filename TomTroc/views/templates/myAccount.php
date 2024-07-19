@@ -58,8 +58,21 @@
                 <tbody>
                     <?php foreach ($books as $book) { ?>
                         <tr>
+                            <th scope="row"><img src="<?= $book->image ?>" height="50px" alt=""></th>
                             <th scope="row"><?= $book->title ?></th>
+                            <td><?= $book->author_name . ' ' . $book->author_forname ?></td>
+                            <td><?= $book->description ?></td>
+                            <td>
+                                <?php if($book->availability) {
+                                    echo '<p class="badge_available">disponible</p>';
+                                } else {
+                                    echo '<p class="badge_unavailable">indisponible</p>';
+                                }
+                                ?>
+                            </td>
+                            <td><?= $book->title ?></td>
                         </tr>
+                        
                     <?php } ?>
                 </tbody>
             </table>

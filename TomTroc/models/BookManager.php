@@ -92,11 +92,16 @@ class BookManager extends AbstractEntityManager
 
     public function getBooksByUserId(int $id) : array
     {
-        $sql = "SELECT id, title, description, image, date_creation FROM book WHERE book.owner_id = :id";
+        $sql = "SELECT * FROM book WHERE book.owner_id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $books = [];
         while ($book = $result->fetch()) {
-            $books[] = new Book($book);
+            $author = self::getAuthorByBookId($book['author_id']);
+            $newBook = new Book($book);
+            $newBook->author_name = $author->name;
+            $newBook->author_forname = $author->forname;
+    
+            array_push($books, $newBook);
         }
 
         return $books;

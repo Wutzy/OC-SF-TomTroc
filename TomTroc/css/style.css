@@ -598,6 +598,22 @@ nav{
     height: 63px;
     font-size: 16px;
 }
+.badge_available {
+    background-color: #6DC5A1;
+    width:  70px;
+    height:  18px;
+    padding: 4px 13px;
+    gap: 7px;
+    border-radius: 29px;
+}
+.my-books
+{
+    background-color: #FFF;
+
+    margin-bottom: 30px;
+    border-radius: 20px;
+}
+
 
 
 

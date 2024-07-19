@@ -1,21 +1,19 @@
 <?php 
     /** 
-     *  Page de détails d'un livre
+     *  Page de connexion
      */
 ?>
 <section class="register-section">
     <div class="register-container">
         <form action="index.php" method="post" class="login-form">
-            <h2>Inscription</h2>
+            <h2>Connexion</h2>
             <div class="registerFormGrid">
-                <label for="nickname">Pseudo</label>
-                <input type="text" name="nickname" id="nickname" value="" required>
                 <label for="email">Adresse email</label>
                 <input type="text" name="email" id="email" value="" required>
                 <label for="password">Mot de passe</label>
                 <input type="text" name="password" id="password" value="" required>
-                <button class="btn btn-register">S'inscrire</button>
-                <p>Déjà inscrit ? <a href="#">Connectez-vous</a></p>
+                <button class="btn btn-register">Se connecter</button>
+                <p>Pas de compte ? <a href="index.php?action=showSignUpPage">Inscrivez-vous</a></p>
             </div>
         </form>
         <div class="login-picture">

@@ -9,6 +9,7 @@
     private int $idUser;
     private int $author_id;
     private int $owner_id;
+    public int $availability;
     public string $owner_nickname;
     public ?string $author_name;
     public ?string $author_forname;
@@ -51,6 +52,24 @@
     public function getAuthorId() : int
     {
         return $this->author_id;
+    }
+        
+    /**
+     * Setter pour la disponibilité du livre.
+     * @param int $idUser
+     */
+    public function setAvailability(int $availability) : void
+    {
+        $this->availability = $availability;
+    }
+
+    /**
+     * Getter pour la disponibilité du livre.
+     * @return int
+     */
+    public function getAvailability() : int
+    {
+        return $this->availability;
     }
 
     /**

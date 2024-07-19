@@ -31,7 +31,7 @@
         <div class="last-books-group">
             <?php foreach($books as $book) { ?>
                 <div class="card-book">
-                    <a class="info" href="index.php?action=showArticle&id=<?= $book->getId() ?>">
+                    <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>">
                         <img src="<?= $book->getImage() ?>" alt="une image" class="last-book-img">
                         <div class="card-content">
                             <div class="last-books-title"><p><?= $book->getTitle() ?></p></div>
