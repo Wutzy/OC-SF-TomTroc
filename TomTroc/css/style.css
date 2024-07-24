@@ -598,23 +598,130 @@ nav{
     height: 63px;
     font-size: 16px;
 }
-.badge_available {
-    background-color: #6DC5A1;
-    width:  70px;
+.badge_available{
+    background-color: #6DC5A1;v
+}
+.badge_unavailable{
+    background-color: #C56D6D;
+}
+
+.badge_available, .badge_unavailable {
+    text-align: center;
+    width:  80px;
     height:  18px;
-    padding: 4px 13px;
+    padding: 8px 13px;
     gap: 7px;
     border-radius: 29px;
+    color: #FFFFFF;
 }
 .my-books
 {
-    background-color: #FFF;
-
     margin-bottom: 30px;
+}
+.myBooks-array{
     border-radius: 20px;
+    border-collapse: collapse;
 }
 
+.myBooks-array tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
+}
+.myBooks-array tr:last-child td:last-child {
+    border-bottom-right-radius: 20px;
+}
+.myBooks-array-header{
+    color: #292929;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.64px;
+}
 
+.myBooks-array th{
+    background-color: #FFF;
+    text-align: start;
+    border-bottom: 1px solid #F5F3EF;
+    padding: 40px 40px 20px 40px;
+}
+
+.book-row {
+    height: 130px;
+}
+
+.book-row td {
+    padding: 40px 40px 20px 40px;
+    color: #292929;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+tbody tr td{
+    width: 188px;
+    height: 32px;
+}
+tbody tr:nth-child(even){
+    background: #EDF2F6;
+}
+tbody tr:nth-child(odd){
+    background: #FFF;
+}
+.book-row .description p {
+    display: flex;
+    width: 128px;
+    height: 62px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #292929;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: italic;
+}
+
+tr .author {
+    color: #292929;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.action{
+    display: flex;
+    justify-content: space-between;
+}
+.edit-button, .delete-button {
+    text-decoration: underline;
+}
+.delete-button{
+    color: #CB2D2D;
+}
+
+/** My Public account page **/
+
+.myPublicAccount-section {
+    display: flex;
+    justify-content: center;
+    background-color: #FAF9F7;
+}
+.myPublicAccount-container {
+    display: flex;
+    width: 100% ;
+    justify-content: space-around;
+}
+
+.myPublicAccount-container .user-infos {
+    width: 341px;
+    height: 579px;
+}
+
+.myPublicAccount-container .my-books {
+}
 
 
 

@@ -3,9 +3,8 @@
      *  Page Mon compte
      */
 ?>
-<section class="myAccount-section">
-    <div class="myAccount-container">
-        <h2>Mon compte</h2>
+<section class="myPublicAccount-section">
+    <div class="myPublicAccount-container">
         <div class="user-infos">
             <div class="user-card">
                 <div class="user-picture">
@@ -26,20 +25,6 @@
                     </div>
                 </div>
             </div>
-            <div class="user-form">
-                <form action="index.php" method="post" class="">
-                    <h3>Vos informations personnelles</h3>
-                    <div class="registerFormGrid">
-                        <label for="email">Adresse email</label>
-                        <input type="text" name="email" id="email" value="???" required>
-                        <label for="password">Mot de passe</label>
-                        <input type="text" name="password" id="password" value="???" required>
-                        <label for="nickname">Pseudo</label>
-                        <input type="text" name="nickname" id="nickname" value="???" required>
-                        <button class="btn btn-save">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
         </div>
         <div class="my-books">
             <table class="myBooks-array">
@@ -51,8 +36,6 @@
                         <th scope="col">Titre</th>
                         <th scope="col">Auteur</th>
                         <th scope="col">Description</th>
-                        <th scope="col">Disponibilité</th>
-                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,15 +45,6 @@
                             <td class="title"><?= $book->title ?></td>
                             <td class="author"><?= $book->author_name . ' ' . $book->author_forname ?></td>
                             <td class="description"><p><?= $book->description ?></p></td>
-                            <td>
-                                <?php if($book->availability) {
-                                    echo '<p class="badge_available">disponible</p>';
-                                } else {
-                                    echo '<p class="badge_unavailable">non dispo.</p>';
-                                }
-                                ?>
-                            </td>
-                            <td><div class="action"><a class="edit-button" href="#">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
                         </tr>
                     <?php } ?>
                 </tbody>

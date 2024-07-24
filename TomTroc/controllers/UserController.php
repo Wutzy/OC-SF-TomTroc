@@ -24,15 +24,23 @@ class UserController
 
     /**
      * Affiche la page mon compte
+     * 
+     * @param bool $public
+     * 
      * @return void
      */
-    public function showMyAccountPage() : void
+    public function showMyAccountPage($public = true) : void
     {
         $booksManager = new BookManager();
         $books = $booksManager->getBooksByUserId(1);
+        if (!$public){
+            $view = new View("Page mon compte");
+            $view->render("myAccount", ['books' => $books]);
+        } else {
+            $view = new View("Page publique mon compte");
+            $view->render("myPublicAccount", ['books' => $books]);
+        }
 
-        $view = new View("Page mon compte");
-        $view->render("myAccount", ['books' => $books]);
     }
 
 }

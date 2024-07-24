@@ -37,9 +37,14 @@ try {
             $userController->showSignUpPage();
             break;
 
-        case 'myAccount':
+        case 'myPublicAccount':
             $userController = new UserController();
             $userController->showMyAccountPage();
+            break;
+
+        case 'myAccount':
+            $userController = new UserController();
+            $userController->showMyAccountPage(false);
             break;
 
         case 'connectUser':
