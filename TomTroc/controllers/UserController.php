@@ -40,7 +40,27 @@ class UserController
             $view = new View("Page publique mon compte");
             $view->render("myPublicAccount", ['books' => $books]);
         }
+    }
 
+    /**
+     * Affiche la page mon compte
+     * 
+     * @param int $id
+     * 
+     * @return void
+     */
+    public function showMyMessagesPage($id = 0) : void
+    {
+        // get user
+        $userManager = new UserManager();
+       //$user = $userManager->getBooksByUserId(1);
+
+        // get user's messages
+        //$messageManager = new MessageManager();
+        //$messages = $messageManager->getMessagesByUserId(1);
+
+        $view = new View("Page mes messages");
+        $view->render("mailBox", []);
     }
 
 }

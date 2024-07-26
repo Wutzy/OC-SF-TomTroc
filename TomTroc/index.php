@@ -47,6 +47,11 @@ try {
             $userController->showMyAccountPage(false);
             break;
 
+        case 'myMessages':
+            $userController = new UserController();
+            $userController->showMyMessagesPage();
+            break;
+        
         case 'connectUser':
             $adminController = new AdminController();
             $adminController->connectUser();

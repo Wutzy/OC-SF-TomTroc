@@ -720,8 +720,85 @@ tr .author {
     height: 579px;
 }
 
-.myPublicAccount-container .my-books {
+/** My Messages page **/
+
+.myMessages-section{
+    display: flex;
+    justify-content: center;
+    background: var(--Gris-clair, #F5F3EF);
 }
+
+.myMessages-container{
+    display: flex;
+    border: 1px solid blue;
+    padding: 30px 0 0 0px;
+}
+.messages{
+    background-color: #FAF9F7;
+    border: 1px solid red;
+    height: 893px;
+    width: 330px;
+}
+.message-preview-row{
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.message-preview-row img{
+    border-radius: 50%;
+}
+.message-preview-group{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 20px
+}
+.message-preview-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.tchat {
+    border: 1px solid green;
+    height: 893px;
+    width: 1070px;
+    padding-left: 30px;
+    background: #F5F3EF;
+}
+
+.tchat-conversation {
+    border: 1px solid grey;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.tchat-new-message {
+    padding-top: 130px;
+    display: flex;
+    gap: 21px;
+}
+.tchat-new-message input{
+    width: 100%;
+    height: 49px;
+    padding-left: 50px;
+    border: none;
+    border-radius: 6px;
+    background-color: #FFF;
+}
+.tchat-new-message input::placeholder{
+    color: #A6A6A6;
+}
+.btn-send-message{
+    display: flex;
+    width: 132px;
+    height: 49px;
+    padding: 22px 38px;
+    justify-content: center;
+    align-items: center;    
+}
+
 
 
 
