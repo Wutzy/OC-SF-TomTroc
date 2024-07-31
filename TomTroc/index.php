@@ -48,8 +48,8 @@ try {
             break;
 
         case 'myMessages':
-            $userController = new UserController();
-            $userController->showMyMessagesPage();
+            $messageController = new MessageController();
+            $messageController->showMessagesReceivedsByUserId(1, 2);
             break;
         
         case 'connectUser':

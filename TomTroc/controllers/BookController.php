@@ -15,12 +15,11 @@ class BookController
     }
 
     /**
-     * Affiche le détail d'un article.
+     * Affiche tous les livres
      * @return void
      */
     public function showBooksCollection() : void
     {
-
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks();
 
