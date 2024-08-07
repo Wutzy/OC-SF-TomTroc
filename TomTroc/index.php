@@ -54,17 +54,17 @@ try {
 
         case 'myMessages':
             $userController = new UserController();
-            $userController->showMyMessagesPage(1, 2);
+            $userController->showMyMessagesPage($_GET['sender_id']);
             break;
 
         case 'connectUser':
-            $adminController = new AdminController();
-            $adminController->connectUser();
+            $userController = new UserController();
+            $userController->connectUser();
             break;
 
         case 'disconnectUser':
-            $adminController = new AdminController();
-            $adminController->disconnectUser();
+            $userController = new userController();
+            $userController->disconnectUser();
             break;
 
         default:

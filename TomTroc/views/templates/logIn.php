@@ -5,13 +5,11 @@
 ?>
 <section class="register-section">
     <div class="register-container">
-        <form action="index.php" method="post" class="login-form">
-            <h2>Inscription</h2>
+        <form action="index.php?action=connectUser"" method="post" class="login-form">
+            <h2>Connexion</h2>
             <div class="registerFormGrid">
-                <label for="nickname">Pseudo</label>
-                <input type="text" name="nickname" id="nickname" value="" required>
                 <label for="email">Adresse email</label>
-                <input type="text" name="email" id="email" value="" required>
+                <input type="text" name="login" id="login" value="" required>
                 <label for="password">Mot de passe</label>
                 <input type="text" name="password" id="password" value="" required>
                 <button class="btn btn-register">S'inscrire</button>

@@ -11,27 +11,32 @@
             </div>
             <div class="allMessages">
                 <?php foreach ($lastMessages as $lastmessage) { ?>
-                    <div class="message-preview-row <?php if ($lastmessage->getSenderId() == 1) {echo 'active';} ?>">
-                        <div class="message-preview-picture">
-                            <img src="views/assets/user-image.jpg" width="48px" height="48px" alt="">
-                        </div>
-                        <div class="message-preview-group">
-                            <div class="message-preview-header">
-                                <div class="sender"><?= $lastmessage->sender_nickname ?></div>
-                                <div class="created-at"><span><?= $lastmessage->created_at->format('H:i') ?></span></div>
+                    <a href="index.php?action=myMessages&sender_id=<?= $lastmessage->getSenderId() ?>">
+                        <div class="message-preview-row <?php if ($lastmessage->getSenderId() == $_GET['sender_id']) {echo 'active';} ?>">
+                            <div class="message-preview-picture">
+                                <img src="views/assets/user-image.jpg" width="48px" height="48px" alt="">
                             </div>
-                            <div class="message-preview-detail">
-                                <p><?= $lastmessage->content ?></p>
+                            <div class="message-preview-group">
+                                <div class="message-preview-header">
+                                    <div class="sender"><?= $lastmessage->sender_nickname ?></div>
+                                    <div class="created-at"><span><?= $lastmessage->created_at->format('H:i') ?></span></div>
+                                </div>
+                                <div class="message-preview-detail">
+                                    <p><?= $lastmessage->content ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>
         <div class="tchat">
             <div class="tchat-recipient">
                 <img src="views/assets/user-image.jpg" width="38px" height="38px" alt="">
-                <span>????</span>
+                <?php if (!empty($allMessages)) { ?>
+                    <span><?php echo $allMessages[1]?->sender_nickname; ?></span>
+                <?php } ?>
+                
             </div>
             <div class="tchat-conversation">
                 <?php foreach ($allMessages as $message) { ?>

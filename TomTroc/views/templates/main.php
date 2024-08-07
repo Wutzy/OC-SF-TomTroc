@@ -25,20 +25,21 @@
                 <div class="menu-left-side">
                     <a href="index.php">Accueil</a>
                     <a href="index.php?action=ourBooks">Nos livres à l'échange</a>
+                    <?php if(isset($_SESSION['user'])) { echo $_SESSION['idUser']; } ?> 
                 </div>
                 <div class="menu-right-side">
                     <a href="index.php?action=myMessages">Messagerie</a>
                     <a href="index.php?action=myAccount">Mon compte</a>
-                    <a href="index.php?action=showSignUpPage">Connexion</a>
-                </div>
-            </div>
-
-            <?php
+                    <?php
                 // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion :
                 if (isset($_SESSION['user'])) {
                     echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                } else {
+                    echo '<a href="index.php?action=showLogInPage">Connexion</a>';
                 }
                 ?>
+                </div>
+            </div>
         </nav>
     </header>
 

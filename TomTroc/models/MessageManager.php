@@ -9,14 +9,16 @@ class MessageManager extends AbstractEntityManager
     /**
      * Récupère tous les messages échangés avec un utilisateur
      */
-    public function getConversationWithSomeone(int $sender_id, int $recipient_id) : array
+    public function getConversationWithSomeone(int $sender_id) : array
     {
-        $sql = "SELECT * FROM message WHERE message.recipient_id = :recipient_id AND message.sender_id = :sender_id";
+        var_dump($sender_id, $_SESSION['idUser']);
+        $sql = "SELECT * FROM message WHERE (message.recipient_id = :recipient_id AND message.sender_id = :sender_id) OR (message.sender_id = :recipient_id AND message.recipient_id = :sender_id) ORDER BY created_at DESC";
         $result = $this->db->query($sql,
         [
             'sender_id' => $sender_id,
-            'recipient_id' => $recipient_id
+            'recipient_id' => $_SESSION['idUser']
         ]);
+
         $messages = [];
 
         while ($message = $result->fetch()) {
@@ -35,12 +37,12 @@ class MessageManager extends AbstractEntityManager
      *
      *
      */
-    public function getAllSendersByUserId(int $id) : array
+    public function getAllSendersByUserId() : array
     {
         //$sql = "SELECT sender_id, content, created_at FROM message WHERE message.recipient_id = :id  GROUP BY sender_id ORDER BY created_at DESC";
         $sql = "SELECT m.sender_id, m.content, m.created_at FROM message m JOIN (SELECT sender_id, MAX(created_at) as date_recente FROM message GROUP BY sender_id) last_message ON m.sender_id = last_message.sender_id AND m.created_at = last_message.date_recente  WHERE m.recipient_id = :id ORDER BY m.created_at DESC";
 
-        $result = $this->db->query($sql, ['id' => $id]);
+        $result = $this->db->query($sql, ['id' => $_SESSION['idUser']]);
         $messages = [];
         while ($message = $result->fetch()) {
             $sender = self::getSenderById($message['sender_id']);
@@ -72,21 +74,17 @@ class MessageManager extends AbstractEntityManager
     /**
      * Affiche tous les messages d'une conversation
      *
-     * @param int $user_id
      * @param int $sender_id
      *
      * @return array
      */
-    public function getAllMessageConversation(int $user_id, int $sender_id) : array
+    public function getAllMessageConversation(int $sender_id) : array
     {
 
-        $messageManager = new MessageManager();
-        $lastMessages = $messageManager->getAllSendersByUserId($user_id);
-        $allMessagesSended = $messageManager->getConversationWithSomeone($sender_id ,$user_id);
-        $allMessagesReceived = $messageManager->getConversationWithSomeone($user_id ,$sender_id);
+        $lastMessages = self::getAllSendersByUserId();
+        $allMessages = self::getConversationWithSomeone($sender_id);
 
-
-        $allMessages = array_merge($allMessagesSended, $allMessagesReceived);
+        var_dump($allMessages);
 
         return $allMessages;
     }

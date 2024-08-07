@@ -47,16 +47,16 @@
 
     /**
      * Setter pour le mot de passe de l'utilisateur.
-     * @param int $idUser
+     * @param string $password
      */
-    public function setPassword(int $password) : void
+    public function setPassword(string $password) : void
     {
         $this->password = $password;
     }
 
     /**
      * Getter pour le mot de passe de l'utilisateur.
-     * @return int
+     * @return string
      */
     public function getPassword() : string
     {
