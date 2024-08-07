@@ -20,16 +20,16 @@
 <div class="container">
     <header>
         <nav>
-            <img src="views/assets/logo.svg" alt="logo TomTroc" height="51" width="155" />
+            <a href="index.php"><img src="views/assets/logo.svg" alt="logo TomTroc" height="51" width="155" /></a>
             <div class="menu">
                 <div class="menu-left-side">
                     <a href="index.php">Accueil</a>
                     <a href="index.php?action=ourBooks">Nos livres à l'échange</a>
                 </div>
                 <div class="menu-right-side">
-                    <a href="#">Messagerie</a>
+                    <a href="index.php?action=myMessages">Messagerie</a>
                     <a href="index.php?action=myAccount">Mon compte</a>
-                    <a href="index.php?action=showLogInPage">Connexion</a>
+                    <a href="index.php?action=showSignUpPage">Connexion</a>
                 </div>
             </div>
 

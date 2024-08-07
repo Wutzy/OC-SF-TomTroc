@@ -24,9 +24,9 @@ class UserController
 
     /**
      * Affiche la page mon compte
-     * 
+     *
      * @param bool $public
-     * 
+     *
      * @return void
      */
     public function showMyAccountPage($public = true) : void
@@ -34,6 +34,8 @@ class UserController
         $booksManager = new BookManager();
         $books = $booksManager->getBooksByUserId(1);
         if (!$public){
+            // On vérifie que l'utilisateur est connecté.
+            $this->checkIfUserIsConnected();
             $view = new View("Page mon compte");
             $view->render("myAccount", ['books' => $books]);
         } else {
@@ -44,23 +46,37 @@ class UserController
 
     /**
      * Affiche la page mon compte
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return void
      */
-    public function showMyMessagesPage($id = 0) : void
+    public function showMyMessagesPage($user_id, $sender_id) : void
     {
-        // get user
-        $userManager = new UserManager();
-       //$user = $userManager->getBooksByUserId(1);
+        // On vérifie que l'utilisateur est connecté.
+        //$this->checkIfUserIsConnected();
 
-        // get user's messages
-        //$messageManager = new MessageManager();
-        //$messages = $messageManager->getMessagesByUserId(1);
+        $messageManager = new MessageManager();
+        $lastMessages = $messageManager->getAllSendersByUserId($sender_id);
+        $allMessages = $messageManager->getAllMessageConversation($sender_id, $user_id);
 
-        $view = new View("Page mes messages");
-        $view->render("mailBox", []);
+        $view = new View("Mes messages");
+        $view->render("mailBox", [
+            'lastMessages' => $lastMessages,
+            'allMessages' => $allMessages
+        ]);
+    }
+
+    /**
+     * Vérifie que l'utilisateur est connecté.
+     * @return void
+     */
+    private function checkIfUserIsConnected() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("showSignUpPage");
+        }
     }
 
 }

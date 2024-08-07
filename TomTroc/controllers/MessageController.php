@@ -4,14 +4,15 @@ class MessageController
 {
     /**
      * Affiche tous les messages qu'a reçu un utilisateur
-     * 
+     *
      * @param int $user_id
      * @param int $sender_id
-     * 
+     *
      * @return void
      */
     public function showMessagesReceivedsByUserId(int $sender_id, int $user_id) : void
     {
+        
         $messageManager = new MessageManager();
         $lastMessages = $messageManager->getAllSendersByUserId($user_id);
         $allMessagesSended = $messageManager->getConversationWithSomeone($sender_id ,$user_id);

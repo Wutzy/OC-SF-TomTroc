@@ -1,12 +1,12 @@
-<?php 
-    /** 
+<?php
+    /**
      *  Page d'inscription
      */
 ?>
 <section class="register-section">
     <div class="register-container">
         <form action="index.php" method="post" class="login-form">
-            <h2>Inscription</h2>
+            <h2>Connexion</h2>
             <div class="registerFormGrid">
                 <label for="nickname">Pseudo</label>
                 <input type="text" name="nickname" id="nickname" value="" required>

@@ -27,6 +27,11 @@ try {
             $bookController->showBook();
             break;
 
+        case 'editBook':
+            $bookController = new BookController();
+            $bookController->showEditBook();
+            break;
+
         case 'showLogInPage':
             $userController = new UserController();
             $userController->showLogInPage();
@@ -48,10 +53,10 @@ try {
             break;
 
         case 'myMessages':
-            $messageController = new MessageController();
-            $messageController->showMessagesReceivedsByUserId(1, 2);
+            $userController = new UserController();
+            $userController->showMyMessagesPage(1, 2);
             break;
-        
+
         case 'connectUser':
             $adminController = new AdminController();
             $adminController->connectUser();

@@ -67,6 +67,16 @@ class BookController
 
 
     /**
+     *
+     * @return void
+     */
+    public function showEditBook() : void
+    {
+        $view = new View("Editer un livre");
+        $view->render("editBook");
+    }
+
+    /**
      * Affiche le formulaire d'ajout d'un article.
      * @return void
      */

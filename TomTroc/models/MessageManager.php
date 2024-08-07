@@ -12,7 +12,7 @@ class MessageManager extends AbstractEntityManager
     public function getConversationWithSomeone(int $sender_id, int $recipient_id) : array
     {
         $sql = "SELECT * FROM message WHERE message.recipient_id = :recipient_id AND message.sender_id = :sender_id";
-        $result = $this->db->query($sql, 
+        $result = $this->db->query($sql,
         [
             'sender_id' => $sender_id,
             'recipient_id' => $recipient_id
@@ -32,8 +32,8 @@ class MessageManager extends AbstractEntityManager
 
     /**
      * Récupère tous les utilisateurs ayant envoyé un message à l'utilisateur connecté
-     * 
-     * 
+     *
+     *
      */
     public function getAllSendersByUserId(int $id) : array
     {
@@ -67,6 +67,28 @@ class MessageManager extends AbstractEntityManager
             return new User($user);
         }
         return null;
+    }
+
+    /**
+     * Affiche tous les messages d'une conversation
+     *
+     * @param int $user_id
+     * @param int $sender_id
+     *
+     * @return array
+     */
+    public function getAllMessageConversation(int $user_id, int $sender_id) : array
+    {
+
+        $messageManager = new MessageManager();
+        $lastMessages = $messageManager->getAllSendersByUserId($user_id);
+        $allMessagesSended = $messageManager->getConversationWithSomeone($sender_id ,$user_id);
+        $allMessagesReceived = $messageManager->getConversationWithSomeone($user_id ,$sender_id);
+
+
+        $allMessages = array_merge($allMessagesSended, $allMessagesReceived);
+
+        return $allMessages;
     }
 
 }
