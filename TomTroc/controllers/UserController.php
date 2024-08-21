@@ -25,19 +25,23 @@ class UserController
     /**
      * Affiche la page mon compte
      *
+     * @param int $user_id
      * @param bool $public
      *
      * @return void
      */
-    public function showMyAccountPage($public = true) : void
+    public function showMyAccountPage(int $user_id, $public = true, ) : void
     {
         $booksManager = new BookManager();
-        $books = $booksManager->getBooksByUserId($_SESSION['idUser']);
+        $books = $booksManager->getBooksByUserId($user_id);
+
         if (!$public){
             // On vérifie que l'utilisateur est connecté.
             $this->checkIfUserIsConnected();
+            $userManager = new UserManager();
+            $user = $userManager->getUserById($_SESSION['idUser']);
             $view = new View("Page mon compte");
-            $view->render("myAccount", ['books' => $books]);
+            $view->render("myAccount", ['books' => $books, 'user' => $user]);
         } else {
             $view = new View("Page publique mon compte");
             $view->render("myPublicAccount", ['books' => $books]);
@@ -47,24 +51,29 @@ class UserController
     /**
      * Affiche la page mon compte
      *
-     * @param int $sender_id
+     * @param ?User $sender
      *
      * @return void
      */
-    public function showMyMessagesPage($sender_id) : void
+    public function showMyMessagesPage($sender = null) : void
     {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
         $messageManager = new MessageManager();
-        $lastMessages = $messageManager->getAllSendersByUserId($sender_id);
-        $allMessages = $messageManager->getAllMessageConversation($sender_id);
+        $lastMessages = $messageManager->getAllSendersByUserId();
+        $allMessages = [];
 
+        if (!empty($sender)) {
+            $allMessages = $messageManager->getConversationWithSomeone($sender->getId());
+            $img_link = $sender->img_link;
+        }
 
         $view = new View("Mes messages");
         $view->render("mailBox", [
             'lastMessages' => $lastMessages,
-            'allMessages' => $allMessages
+            'allMessages' => $allMessages,
+            'imgSender' => $img_link
         ]);
     }
 
@@ -90,6 +99,8 @@ class UserController
         $login = Utils::request("login");
         $password = Utils::request("password");
 
+        var_dump($login, $password);
+
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
@@ -106,7 +117,7 @@ class UserController
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             throw new Exception("Le mot de passe est incorrect. : $hash");
-        } 
+        }
 
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;

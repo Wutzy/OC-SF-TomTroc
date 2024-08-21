@@ -7,29 +7,32 @@
  class Message extends AbstractEntity
  {
 
-    private int $sender_id;
+    //private int $sender_id;
+    //public string $sender_nickname = "";
+    public User $sender;
     private int $recipient_id;
     public DateTime $created_at;
-    public string $sender_nickname = "";
+
     public string $content = "";
 
     /**
      * Setter pour le sender_id.
      * @param int $title
      */
-    public function setSenderId(string $sender_id) : void
+    public function setSender(User $sender) : void
     {
-        $this->sender_id = $sender_id;
+        $this->sender = $sender;
     }
 
     /**
      * Getter pour le sender_id.
      * @return int
      */
-    public function getSenderId() : int
+    public function getSender() : ?User
     {
-        return $this->sender_id;
+        return $this->sender;
     }
+
 
     /**
      * Setter pour le recipient_id.
@@ -39,6 +42,7 @@
     {
         $this->recipient_id = $recipient_id;
     }
+
 
     /**
      * Getter pour recipient_id.
@@ -73,24 +77,6 @@
     }
 
     /**
-     * Getter pour sender_nickname.
-     * @return string
-     */
-    public function getSenderNickname() : string
-    {
-        return $this->sender_nickname;
-    }
-
-    /**
-     * Setter pour le sender_nickname.
-     * @param string $sender_nickname
-     */
-    public function setSenderNickname(string $sender_nickname) : void
-    {
-        $this->sender_nickname = $sender_nickname;
-    }
-
-    /**
      * Getter pour content.
      * @return string
      */
@@ -107,5 +93,5 @@
     {
         $this->content = $content;
     }
-    
+
 }

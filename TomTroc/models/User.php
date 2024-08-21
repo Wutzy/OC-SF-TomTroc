@@ -7,7 +7,8 @@
  class User extends AbstractEntity
  {
     public string $nickname;
-    private string $login;
+    public string $img_link;
+    public string $login;
     private string $password;
 
     /**
@@ -26,6 +27,24 @@
     public function getNickname() : string
     {
         return $this->nickname;
+    }
+
+    /**
+     * Setter pour l'image de l'utilisateur.
+     * @param int $idUser
+     */
+    public function setImgLink(string $img_link) : void
+    {
+        $this->img_link = $img_link;
+    }
+
+    /**
+     * Getter pour l'image de l'utilisateur.
+     * @return int
+     */
+    public function getImgLink() : string
+    {
+        return $this->img_link;
     }
     /**
      * Setter pour le login de l'utilisateur.

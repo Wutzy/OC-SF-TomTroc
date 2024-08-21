@@ -68,9 +68,10 @@ class BookController
 
     /**
      *
+     * @param int $book_id
      * @return void
      */
-    public function showEditBook() : void
+    public function showEditBook($book_id) : void
     {
         $view = new View("Editer un livre");
         $view->render("editBook");

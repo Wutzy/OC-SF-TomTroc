@@ -29,7 +29,7 @@ try {
 
         case 'editBook':
             $bookController = new BookController();
-            $bookController->showEditBook();
+            $bookController->showEditBook($_GET['book_id']);
             break;
 
         case 'showLogInPage':
@@ -44,17 +44,19 @@ try {
 
         case 'myPublicAccount':
             $userController = new UserController();
-            $userController->showMyAccountPage();
+            $userController->showMyAccountPage($_GET['user_id']);
             break;
 
         case 'myAccount':
             $userController = new UserController();
-            $userController->showMyAccountPage(false);
+            $userController->showMyAccountPage($_SESSION['idUser'], false);
             break;
 
         case 'myMessages':
             $userController = new UserController();
-            $userController->showMyMessagesPage($_GET['sender_id']);
+            $messageManager = new MessageManager();
+            $sender = $messageManager->getSenderById($_GET['sender_id']);
+            $userController->showMyMessagesPage($sender);
             break;
 
         case 'connectUser':

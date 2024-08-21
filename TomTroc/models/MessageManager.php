@@ -11,7 +11,6 @@ class MessageManager extends AbstractEntityManager
      */
     public function getConversationWithSomeone(int $sender_id) : array
     {
-        var_dump($sender_id, $_SESSION['idUser']);
         $sql = "SELECT * FROM message WHERE (message.recipient_id = :recipient_id AND message.sender_id = :sender_id) OR (message.sender_id = :recipient_id AND message.recipient_id = :sender_id) ORDER BY created_at DESC";
         $result = $this->db->query($sql,
         [
@@ -24,7 +23,7 @@ class MessageManager extends AbstractEntityManager
         while ($message = $result->fetch()) {
             $sender = self::getSenderById($message['sender_id']);
             $newMessage = new Message($message);
-            $newMessage->sender_nickname = $sender->nickname;
+            $newMessage->sender = $sender;
 
             array_push($messages, $newMessage);
         }
@@ -47,7 +46,7 @@ class MessageManager extends AbstractEntityManager
         while ($message = $result->fetch()) {
             $sender = self::getSenderById($message['sender_id']);
             $newMessage = new Message($message);
-            $newMessage->sender_nickname = $sender->nickname;
+            $newMessage->sender = $sender;
 
             array_push($messages, $newMessage);
         }
@@ -62,31 +61,13 @@ class MessageManager extends AbstractEntityManager
      */
     public function getSenderById(int $id) : ?User
     {
-        $sql = "SELECT nickname FROM user WHERE user.id = :id";
+        $sql = "SELECT nickname, img_link, id FROM user WHERE user.id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $user = $result->fetch();
         if ($user) {
             return new User($user);
         }
         return null;
-    }
-
-    /**
-     * Affiche tous les messages d'une conversation
-     *
-     * @param int $sender_id
-     *
-     * @return array
-     */
-    public function getAllMessageConversation(int $sender_id) : array
-    {
-
-        $lastMessages = self::getAllSendersByUserId();
-        $allMessages = self::getConversationWithSomeone($sender_id);
-
-        var_dump($allMessages);
-
-        return $allMessages;
     }
 
 }

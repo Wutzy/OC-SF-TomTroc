@@ -100,7 +100,7 @@ class BookManager extends AbstractEntityManager
             $newBook = new Book($book);
             $newBook->author_name = $author->name;
             $newBook->author_forname = $author->forname;
-    
+
             array_push($books, $newBook);
         }
 
