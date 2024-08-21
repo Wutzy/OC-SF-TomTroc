@@ -3,48 +3,44 @@
 /**
  * Classe qui gère les Books.
  */
-class BookManager extends AbstractEntityManager
+class AuthorManager extends AbstractEntityManager
 {
 
     /**
-     * Récupère tous les books.
-     * @param bool $limited
-     * @return array : un tableau d'objets Book.
-     *
+     * Check if author exist by using name et forname
+     * @param string $firstname
+     * @param string $lastname
+     * 
      */
-    public function getAllBooks(bool $limited = false) : array
+    public function getAuthorIfExist($firstname, $lastname)
     {
-        $sql = "SELECT * FROM book";
-        if ($limited) {
-            $sql .= " LIMIT 4";
-        }
+        $sql = "SELECT  * FROM author WHERE name = :name AND forname = :forname ";
+        $result = $this->db->query($sql, ['name' => $firstname, 'forname' => $lastname]);
+        $author = $result->fetch();
+        if ($author) {
+            $selectedAuthor = new Book($author);
 
-        $result = $this->db->query($sql);
-        $books = [];
-
-        while ($book = $result->fetch()) {
-            $books[] = new Book($book);
-        }
-
-        return $books;
-    }
-
-    /**
-     * Récupère un book par son id.
-     * @param int $id : l'id du book.
-     * @return Book|null : un objet Book ou null si le book n'existe pas.
-     */
-    public function getBookById(int $id) : ?Book
-    {
-        $sql = "SELECT * FROM book WHERE id = :id";
-        $result = $this->db->query($sql, ['id' => $id]);
-        $book = $result->fetch();
-        if ($book) {
-            return new Book($book);
+            return $selectedAuthor;
         }
         return null;
     }
 
+    /**
+     * Ajoute un auteur.,
+     * 
+     * @param string $firstname : nom de l'auteur à ajouter.
+     * @param string $lastname : prenom de l'auteur à ajouter.
+     * 
+     * @return void
+     */
+    public function addAuthor($firstname, $lastname) : void
+    {
+        $sql = "INSERT INTO author (name, forname) VALUES (:name, :forname)";
+        $this->db->query($sql, [
+            'name' => $firstname,
+            'forname' => $lastname
+        ]);
+    }
 
     /**
      * Delete  an author.

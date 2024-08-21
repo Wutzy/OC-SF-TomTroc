@@ -24,9 +24,10 @@ class BookManager extends AbstractEntityManager
         while ($book = $result->fetch()) {
 
             $author = self::getAuthorByBookId($book['author_id']);
+            $owner = self::getOwnerByBookId($book['author_id']);
             $newBook = new Book($book);
-            $newBook->author_name = $author->name;
-            $newBook->author_forname = $author->forname;
+            $newBook->author = $author;
+            $newBook->owner = $owner;
 
             array_push($books, $newBook);
 
@@ -65,9 +66,8 @@ class BookManager extends AbstractEntityManager
             $author = self::getAuthorByBookId($book['author_id']);
             $owner = self::getOwnerByBookId($book['owner_id']);
             $selectedBook = new Book($book);
-            $selectedBook->author_name = $author->name;
-            $selectedBook->author_forname = $author->forname;
-            $selectedBook->owner_nickname = $owner->nickname;
+            $selectedBook->author = $author;
+            $selectedBook->owner = $owner;
 
             return $selectedBook;
         }
@@ -98,8 +98,7 @@ class BookManager extends AbstractEntityManager
         while ($book = $result->fetch()) {
             $author = self::getAuthorByBookId($book['author_id']);
             $newBook = new Book($book);
-            $newBook->author_name = $author->name;
-            $newBook->author_forname = $author->forname;
+            $newBook->author = $author;
 
             array_push($books, $newBook);
         }
@@ -162,11 +161,12 @@ class BookManager extends AbstractEntityManager
      */
     public function updateBook(Book $book) : void
     {
-        $sql = "UPDATE book SET title = :title, description = :description, image = :image WHERE id = :id";
+        $sql = "UPDATE book SET title = :title, description = :description, image = :image, author_id = :author_id WHERE id = :id";
         $this->db->query($sql, [
-            'title' => $book->getTitle(),
-            'description' => $book->getDescription(),
-            'image' => $book->getImage(),
+            'title' => $book->title,
+            'description' => $book->description,
+            'image' => $book->image,
+            'author_id' => $book->author_id,
             'id' => $book->getId(),
         ]);
     }

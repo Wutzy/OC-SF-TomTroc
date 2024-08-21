@@ -60,7 +60,7 @@
                         <tr class="book-row">
                             <td class="image"><img src="<?= $book->image ?>" height="50px" alt=""></th>
                             <td class="title"><?= $book->title ?></td>
-                            <td class="author"><?= $book->author_name . ' ' . $book->author_forname ?></td>
+                            <td class="author"><?= $book->author->name . ' ' . $book->author->forname ?></td>
                             <td class="description"><p><?= $book->description ?></p></td>
                             <td>
                                 <?php if($book->availability) {
@@ -70,7 +70,7 @@
                                 }
                                 ?>
                             </td>
-                            <td><div class="action"><a class="edit-button" href="index.php?action=editBook&book_id=<?= $book->getId() ?>">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                            <td><div class="action"><a class="edit-button" href="index.php?action=showUpdateBookForm&book_id=<?= $book->getId() ?>">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
                         </tr>
                     <?php } ?>
                 </tbody>

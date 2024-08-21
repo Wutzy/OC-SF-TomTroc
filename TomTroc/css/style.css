@@ -457,7 +457,7 @@ nav{
     font-weight: 400;
     line-height: normal;
 }
-.registerFormGrid input{
+.registerFormGrid input, textarea, select{
     width: 322px;
     height: 50px;
     border-radius: 6px;
@@ -841,6 +841,25 @@ tr .author {
 .myself p{
     background-color: #EDF2F6;
 }
+
+/** Edit Book Page */
+.book-picture img {
+    height: 650px;
+    width: 600px;
+}
+
+#description {
+    width: 435px;
+    height: 356px;
+    justify-content: start;
+}
+
+.editBook-form .editFormGrid input, select{
+    width: 435px;
+    height: 50px;
+}
+
+
 
 
 

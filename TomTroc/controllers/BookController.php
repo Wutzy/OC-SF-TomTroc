@@ -71,20 +71,17 @@ class BookController
      * @param int $book_id
      * @return void
      */
-    public function showEditBook($book_id) : void
+    public function showUpdateBookForm($book_id) : void
     {
-        $view = new View("Editer un livre");
-        $view->render("editBook");
-    }
+        // get book 
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($book_id);
 
-    /**
-     * Affiche le formulaire d'ajout d'un article.
-     * @return void
-     */
-    public function addArticle() : void
-    {
-        $view = new View("Ajouter un article");
-        $view->render("addArticle");
+        $view = new View("Editer un livre");
+        $view->render("editBook", 
+        [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -95,4 +92,55 @@ class BookController
         $view = new View("A propos");
         $view->render("apropos");
     }
+
+    /**
+     * Ajout et modification d'un book.
+     * On sait si un book est ajouté car l'id vaut -1.
+     * @return void
+     */
+    public function updateBook() : void
+    {
+        // On récupère les données du formulaire.
+        $id = Utils::request("id");
+        $title = Utils::request("title");
+        $description = Utils::request("description");
+        $firstname = Utils::request("firstname");
+        $lastname = Utils::request("lastname");
+        $availability = Utils::request("availability");
+
+        // On vérifie que les données sont valides.
+        if (empty($title) || empty($description) || empty($firstname) || empty($lastname)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        // on vérifie si l'auteur existe, sinon on le créé
+        $authorManager = new AuthorManager();
+        $author = $authorManager->getAuthorIfExist($firstname, $lastname);
+        if (!$author)
+        {
+            $authorManager->addAuthor($firstname, $lastname);
+            $author = $authorManager->getAuthorIfExist($firstname, $lastname);
+        }
+        $author_id = $author->getId();
+
+
+        // On crée l'objet Book.
+        $book = new Book([
+            'id' => $id, 
+            'title' => $title,
+            'image' => $image,
+            'description' => $description,
+            'author_id' => $author_id,
+            'owner_id' => $_SESSION['idUser'],
+            'availability' => $availability
+        ]);
+        //var_dump($book);die;
+        // On ajoute le livre.
+        $bookManager = new BookManager();
+        $bookManager->updateBook($book);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("showUpdateBookForm", ['book_id' => $id]);
+    }
+
 }

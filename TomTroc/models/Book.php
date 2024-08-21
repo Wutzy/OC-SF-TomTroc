@@ -7,12 +7,9 @@
  class Book extends AbstractEntity
  {
     private int $idUser;
-    private int $author_id;
-    private int $owner_id;
+    public Author $author;
+    public User $owner;
     public int $availability;
-    public string $owner_nickname;
-    public ?string $author_name;
-    public ?string $author_forname;
     public string $title = "";
     public string $description = "";
     public string $image = "";
@@ -22,36 +19,36 @@
      * Setter pour l'id de l'utilisateur.
      * @param int $idUser
      */
-    public function setIdUser(int $idUser) : void
+    public function setOwner(User $owner) : void
     {
-        $this->idUser = $idUser;
+        $this->owner = $owner;
+    }
+
+    /**
+     * Getter pour l'id de l'utilisateur.
+     * @return User
+     */
+    public function getOwner() : User
+    {
+        return $this->owner;
+    }
+
+    /**
+     * Setter pour l'auteur de l'utilisateur.
+     * @param Author $author
+     */
+    public function setAuthor(Author $author) : void
+    {
+        $this->author = $author;
     }
 
     /**
      * Getter pour l'id de l'utilisateur.
      * @return int
      */
-    public function getIdUser() : int
+    public function getAuthor() : Author
     {
-        return $this->idUser;
-    }
-
-    /**
-     * Setter pour l'id de l'utilisateur.
-     * @param int $idUser
-     */
-    public function setAuthorId(int $author_id) : void
-    {
-        $this->author_id = $author_id;
-    }
-
-    /**
-     * Getter pour l'id de l'utilisateur.
-     * @return int
-     */
-    public function getAuthorId() : int
-    {
-        return $this->author_id;
+        return $this->author;
     }
         
     /**

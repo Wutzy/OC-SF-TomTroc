@@ -35,8 +35,8 @@
                         <img src="<?= $book->getImage() ?>" alt="une image" class="last-book-img">
                         <div class="card-content">
                             <div class="last-books-title"><p><?= $book->getTitle() ?></p></div>
-                            <div class="last-books-author"><p><?= $book->author_name .' ' . $book->author_forname ?></p></div>
-                            <div class="last-books-"><p>Vendeur</p></div>
+                            <div class="last-books-author"><p><?= $book->author->name .' ' . $book->author->forname ?></p></div>
+                            <div class="last-books-"><p><?= $book->owner->nickname ?></p></div>
                         </div>
                     </a>
                 </div>

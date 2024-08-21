@@ -27,9 +27,9 @@ try {
             $bookController->showBook();
             break;
 
-        case 'editBook':
+        case 'showUpdateBookForm':
             $bookController = new BookController();
-            $bookController->showEditBook($_GET['book_id']);
+            $bookController->showUpdateBookForm($_GET['book_id']);
             break;
 
         case 'showLogInPage':
@@ -40,6 +40,11 @@ try {
         case 'showSignUpPage':
             $userController = new UserController();
             $userController->showSignUpPage();
+            break;
+
+        case 'updateBook':
+            $bookController = new BookController();
+            $bookController->updateBook();
             break;
 
         case 'myPublicAccount':

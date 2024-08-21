@@ -5,43 +5,39 @@
 ?>
 <section class="myAccount-section">
     <div class="myAccount-container">
-        <h2>Mon compte</h2>
+        <div>
+            <a href="#">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.646447 3.64645C0.451184 3.84171 0.451184 4.15829 0.646447 4.35355L3.82843 7.53553C4.02369 7.7308 4.34027 7.7308 4.53553 7.53553C4.7308 7.34027 4.7308 7.02369 4.53553 6.82843L1.70711 4L4.53553 1.17157C4.7308 0.976311 4.7308 0.659728 4.53553 0.464466C4.34027 0.269204 4.02369 0.269204 3.82843 0.464466L0.646447 3.64645ZM9 4.5C9.27614 4.5 9.5 4.27614 9.5 4C9.5 3.72386 9.27614 3.5 9 3.5V4.5ZM1 4.5H9V3.5H1V4.5Z" fill="#A6A6A6"/>
+                </svg>
+                retour
+            </a>
+        </div>
+        <h2>Modifier les informations</h2>
         <div class="user-infos">
-            <div class="user-card">
-                <div class="user-picture">
-                    <img src="views/assets/user-image.jpg" alt="">
-                    <a href="#">modifier</a>
-                </div>
-                <div class="user-line"></div>
-                <div class="user-details">
-                    <div class="user-infos-nickname">???</div>
-                    <div class="user-infos-seniority">Membre depuis ???</div>
-                    <div class="book-owner-label">BIBLIOTHEQUE</div>
-                    <div class="user-info-totalBooks">
-                        <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.46556 0.160154L7.2112 0.00251429C6.65202 -0.0365878 6.16701 0.385024 6.12791 0.944207L5.32192 12.4705C5.28281 13.0296 5.70442 13.5147 6.26361 13.5538L8.51796 13.7114C9.07715 13.7505 9.56215 13.3289 9.60125 12.7697L10.4072 1.24345C10.4464 0.684262 10.0247 0.199256 9.46556 0.160154ZM6.84113 0.99408C6.85269 0.828798 6.99605 0.70418 7.16133 0.715737L9.41568 0.873377C9.58096 0.884935 9.70558 1.02829 9.69403 1.19357L8.88803 12.7198C8.87647 12.8851 8.73312 13.0097 8.56783 12.9982L6.31348 12.8405C6.1482 12.829 6.02358 12.6856 6.03514 12.5203L6.84113 0.99408Z" fill="#292929"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27482 0.0648067H1.01496C0.454414 0.0648067 0 0.519224 0 1.07977V12.6342C0 13.1947 0.454416 13.6491 1.01496 13.6491H3.27482C3.83537 13.6491 4.28979 13.1947 4.28979 12.6342V1.07977C4.28979 0.519221 3.83537 0.0648067 3.27482 0.0648067ZM0.714965 1.07977C0.714965 0.914086 0.849279 0.779771 1.01496 0.779771H3.27482C3.44051 0.779771 3.57482 0.914086 3.57482 1.07977V12.6342C3.57482 12.7999 3.44051 12.9342 3.27482 12.9342H1.01496C0.849279 12.9342 0.714965 12.7999 0.714965 12.6342V1.07977Z" fill="#292929"/>
-                        </svg>
-                        ?? livres
-                    </div>
-                </div>
+            <div class="book-picture">
+                <div>Photo</div>
+                <img src="<?= $book->image ?>" alt="">
             </div>
             <div class="editBook-form">
-                <form action="index.php" method="post" class="">
-                    <div class="editFormGrid">
+                <form action="index.php?action=updateBook" method="post" class="">
+                    <div class="editFormGrid registerFormGrid">
                         <label for="email">Titre</label>
-                        <input type="text" name="title" id="title" value="???" required>
-                        <label for="password">Nom de l'auteur</label>
-                        <input type="text" name="firstname" id="firstname" value="???" required>
-                        <label for="password">Prenom de l'auteur</label>
-                        <input type="text" name="lastname" id="lastname" value="???" required>
+                        <input type="text" name="title" id="title" value="<?= $book->title ?>" required>
+                        <label for="firstname">Nom de l'auteur</label>
+                        <input type="text" name="firstname" id="firstname" value="<?= $book->author->name?>" required>
+                        <label for="lastname">Prenom de l'auteur</label>
+                        <input type="text" name="lastname" id="lastname" value="<?= $book->author->forname ?>" required>
                         <label for="nickname">Description</label>
-                        <input type="text" name="description" id="description" value="???" required>
+                        <textarea name="description" id="description" required><?= $book->description ?></textarea>
                         <label for="nickname">Disponibilité</label>
                         <select type="select" name="availability" id="availability">
-                            <option value="disponible">disponible</option>
-                            <option value="disponible">indisponible</option>
-                        <button class="btn btn-save">Enregistrer</button>
+                            <option value="1" <?php if ($book->availability == 1) { echo 'selected';} ?>>disponible</option>
+                            <option value="0" <?php if ($book->availability == 0) { echo 'selected';} ?>>indisponible</option>
+                        </select>
+                        <input type="hidden" name="id" id="id" value="<?= $book->getId() ?>">
+                        <input type="hidden" name="image" id="image" value="<?= $book->image ?>">
+                        <button class="btn btn-save">Valider</button>
                     </div>
                 </form>
             </div>

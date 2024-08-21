@@ -63,6 +63,7 @@ class UserController
         $messageManager = new MessageManager();
         $lastMessages = $messageManager->getAllSendersByUserId();
         $allMessages = [];
+        $img_link = '';
 
         if (!empty($sender)) {
             $allMessages = $messageManager->getConversationWithSomeone($sender->getId());
