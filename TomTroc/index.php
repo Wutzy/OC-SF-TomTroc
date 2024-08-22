@@ -60,7 +60,19 @@ try {
         case 'myMessages':
             $userController = new UserController();
             $messageManager = new MessageManager();
-            $sender = $messageManager->getSenderById($_GET['sender_id']);
+            // On récupère l'id du destinaire qui a envoyé le message le plus récent
+            $last_message = $messageManager->getAllSendersByUserId();
+            $last_sender_id = $last_message[0]->sender->getId();
+            // Cas où on a cliqué sur une conversation
+            if (!$_GET['sender_id'] == 0)
+            {
+                $sender = $messageManager->getSenderById($_GET['sender_id']);
+            } else {
+                // cas où on passe par le menu, par defaut on affiche le message le plus récent
+                $_GET['sender_id'] = $last_sender_id;
+                $sender = $messageManager->getSenderById($last_sender_id);
+            }
+
             $userController->showMyMessagesPage($sender);
             break;
 

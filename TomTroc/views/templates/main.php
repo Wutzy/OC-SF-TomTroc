@@ -25,7 +25,6 @@
                 <div class="menu-left-side">
                     <a href="index.php">Accueil</a>
                     <a href="index.php?action=ourBooks">Nos livres à l'échange</a>
-                    <?php if(isset($_SESSION['user'])) { echo $_SESSION['idUser']; } ?>
                 </div>
                 <div class="menu-right-side">
                     <?php

@@ -10,7 +10,7 @@ class AuthorManager extends AbstractEntityManager
      * Check if author exist by using name et forname
      * @param string $firstname
      * @param string $lastname
-     * 
+     *
      */
     public function getAuthorIfExist($firstname, $lastname)
     {
@@ -18,7 +18,7 @@ class AuthorManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['name' => $firstname, 'forname' => $lastname]);
         $author = $result->fetch();
         if ($author) {
-            $selectedAuthor = new Book($author);
+            $selectedAuthor = new Author($author);
 
             return $selectedAuthor;
         }
@@ -27,10 +27,10 @@ class AuthorManager extends AbstractEntityManager
 
     /**
      * Ajoute un auteur.,
-     * 
+     *
      * @param string $firstname : nom de l'auteur à ajouter.
      * @param string $lastname : prenom de l'auteur à ajouter.
-     * 
+     *
      * @return void
      */
     public function addAuthor($firstname, $lastname) : void

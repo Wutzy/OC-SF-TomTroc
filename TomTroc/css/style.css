@@ -383,7 +383,7 @@ nav{
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal; 
+    line-height: normal;
 }
 .book-author{
     color: var(--Gris-texte, #A6A6A6);
@@ -533,7 +533,7 @@ nav{
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
-    text-decoration-line: underline;    
+    text-decoration-line: underline;
 }
 
 .user-picture img{
@@ -730,12 +730,10 @@ tr .author {
 
 .myMessages-container{
     display: flex;
-    border: 1px solid blue;
     padding: 30px 0 0 0px;
 }
 .messages{
     background-color: #FAF9F7;
-    border: 1px solid red;
     height: 893px;
     width: 330px;
 }
@@ -745,7 +743,8 @@ tr .author {
     padding: 20px;
 }
 .allMessages .active{
-    background-color: yellow;
+    background-color: #FFFFFF;
+    ;
 }
 
 .message-preview-row img{
@@ -762,15 +761,13 @@ tr .author {
 }
 
 .tchat {
-    border: 1px solid green;
     height: 893px;
     width: 1070px;
     padding-left: 30px;
-    background: #F5F3EF;
+    background-color: #F5F3EF;
 }
 
 .tchat-conversation {
-    border: 1px solid grey;
     height: 550px;
     display: flex;
     flex-direction: column;
@@ -799,7 +796,7 @@ tr .author {
     height: 49px;
     padding: 22px 38px;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 .message-row {
     margin: 10px 0;
@@ -843,6 +840,10 @@ tr .author {
 }
 
 /** Edit Book Page */
+
+.user-infos {
+    width: 100%;
+}
 .book-picture img {
     height: 650px;
     width: 600px;
@@ -858,6 +859,33 @@ tr .author {
     width: 435px;
     height: 50px;
 }
+.editBook-form{
+    width: 100%;
+}
+.editBook-form form{
+    display: flex;
+    justify-content: space-between;
+}
+.edit-book-image{
+    display: flex;
+    justify-content: end;
+}
+.edit-book-image label{
+    text-decoration: underline;
+}
+
+#book-image {
+    width: 100px;
+	height: 20px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: 99;
+}
+#book-image:hover {
+    cursor: pointer;
+}
+
 
 
 

@@ -9,7 +9,7 @@
         <div class="user-infos">
             <div class="user-card">
                 <div class="user-picture">
-                    <img src="<?= $user->img_link ?>" alt="">
+                    <img src="views/assets/<?= $user->img_link ?>" alt="">
                     <a href="#">modifier</a>
                 </div>
                 <div class="user-line"></div>

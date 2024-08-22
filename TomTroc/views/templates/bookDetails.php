@@ -1,12 +1,12 @@
-<?php 
-    /** 
+<?php
+    /**
      *  Page de détails d'un livre
      */
 ?>
 <section class="book-details">
     <div class="book-details-container">
         <div class="book-details-picture">
-            <img src="<?= $book->image ?>">
+            <img src="views/assets/book_picture/<?= $book->image ?>">
         </div>
         <div class="book-details-informations">
             <h2 class="book-title"><?= Utils::format($book->title) ?></h2>
@@ -18,10 +18,10 @@
             <p class="book-description"><?= Utils::format($book->description) ?></p>
             <p class="book-owner-label">Propriétaire</p>
             <a href="#" class="owner-card">
-                <img src="<?= $book->image ?>" alt="">
+                <img src="views/assets/user-images/<?= $book->owner->img_link ?>" alt="">
                 <p class="owner-nickname">
                     <?= Utils::format($book->owner->nickname) ?>
-                </p>                     
+                </p>
             </a>
             <div>
                 <button class="btn-send">Envoyer un message</button>

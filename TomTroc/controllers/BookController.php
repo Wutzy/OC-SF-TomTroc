@@ -38,11 +38,12 @@ class BookController
 
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($id);
+
         if (!$book) {
             throw new Exception("Le livre demandé n'existe pas.");
         }
 
-        $view = new View($book->getTitle());
+        $view = new View($book->title);
         $view->render("bookDetails", ['book' => $book]);
     }
 
@@ -73,12 +74,12 @@ class BookController
      */
     public function showUpdateBookForm($book_id) : void
     {
-        // get book 
+        // get book
         $bookManager = new BookManager();
         $book = $bookManager->getBookById($book_id);
 
         $view = new View("Editer un livre");
-        $view->render("editBook", 
+        $view->render("editBook",
         [
             'book' => $book,
         ]);
@@ -104,6 +105,7 @@ class BookController
         $id = Utils::request("id");
         $title = Utils::request("title");
         $description = Utils::request("description");
+        $image = empty(Utils::request("book-image")) ? Utils::request("current-book-image") : Utils::request("book-image");
         $firstname = Utils::request("firstname");
         $lastname = Utils::request("lastname");
         $availability = Utils::request("availability");
@@ -116,21 +118,20 @@ class BookController
         // on vérifie si l'auteur existe, sinon on le créé
         $authorManager = new AuthorManager();
         $author = $authorManager->getAuthorIfExist($firstname, $lastname);
+
         if (!$author)
         {
             $authorManager->addAuthor($firstname, $lastname);
             $author = $authorManager->getAuthorIfExist($firstname, $lastname);
         }
-        $author_id = $author->getId();
 
-
-        // On crée l'objet Book.
+        // On créé l'objet Book.
         $book = new Book([
-            'id' => $id, 
+            'id' => $id,
             'title' => $title,
             'image' => $image,
             'description' => $description,
-            'author_id' => $author_id,
+            'author' => $author,
             'owner_id' => $_SESSION['idUser'],
             'availability' => $availability
         ]);

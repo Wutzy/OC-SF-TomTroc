@@ -7,8 +7,8 @@
  class Book extends AbstractEntity
  {
     private int $idUser;
-    public Author $author;
-    public User $owner;
+    public ?Author $author;
+    public ?User $owner;
     public int $availability;
     public string $title = "";
     public string $description = "";
@@ -50,7 +50,7 @@
     {
         return $this->author;
     }
-        
+
     /**
      * Setter pour la disponibilité du livre.
      * @param int $idUser

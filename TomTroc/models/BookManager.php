@@ -22,9 +22,8 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql);
         $books = [];
         while ($book = $result->fetch()) {
-
             $author = self::getAuthorByBookId($book['author_id']);
-            $owner = self::getOwnerByBookId($book['author_id']);
+            $owner = self::getOwnerByBookId($book['owner_id']);
             $newBook = new Book($book);
             $newBook->author = $author;
             $newBook->owner = $owner;
@@ -114,7 +113,7 @@ class BookManager extends AbstractEntityManager
      */
     public function getOwnerByBookId(int $id) : ?User
     {
-        $sql = "SELECT nickname FROM user LEFT JOIN book ON user.id = book.owner_id WHERE user.id = :id";
+        $sql = "SELECT nickname, img_link FROM user LEFT JOIN book ON user.id = book.owner_id WHERE user.id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $owner = $result->fetch();
         if ($owner) {
@@ -161,12 +160,12 @@ class BookManager extends AbstractEntityManager
      */
     public function updateBook(Book $book) : void
     {
-        $sql = "UPDATE book SET title = :title, description = :description, image = :image, author_id = :author_id WHERE id = :id";
+        $sql = "UPDATE book SET title = :title, description = :description, image = :image, author_id = :author_id, availability = :availability WHERE id = :id";
         $this->db->query($sql, [
             'title' => $book->title,
             'description' => $book->description,
             'image' => $book->image,
-            'author_id' => $book->author_id,
+            'author_id' => $book->author->getId(),
             'id' => $book->getId(),
         ]);
     }
