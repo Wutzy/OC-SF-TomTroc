@@ -22,7 +22,7 @@ class UserManager extends AbstractEntityManager
         return null;
     }
 
-        /**
+    /**
      * Récupère un user par son id.
      * @param string $id
      * @return ?User
@@ -36,5 +36,58 @@ class UserManager extends AbstractEntityManager
             return new User($user);
         }
         return null;
+    }
+
+     /**
+     * Ajoute ou modifie un user.
+     * On sait si le user est un nouveau user car son id sera -1.
+     * @param User $user : le user à ajouter ou modifier.
+     * @return void
+     */
+    public function addOrUpdateUser(User $user) : void
+    {
+        if ($user->getId() == -1) {
+            $this->addUser($user);
+        } else {
+            $this->updateUser($user);
+        }
+    }
+
+    /**
+     * Ajoute un user.
+     * @param User $user : le user à ajouter.
+     * @return void
+     */
+    public function addUser(User $user) : void
+    {
+        $sql = "INSERT INTO user (nickname, login, password, img_link) VALUES (:nickname, :login, :password, :img_link)";
+        $this->db->query($sql, [
+            'nickname' => $user->nickname,
+            'login' => $user->login,
+            'password' => $user->getPassword(),
+            'img_link' => $user->img_link
+        ]);
+    }
+
+    /**
+     * Modifie un user.
+     * @param User $user : le user à modifier.
+     * @return void
+     */
+    public function updateUser(User $user) : void
+    {
+        if ($user->getPassword() !== 'pass') {
+            $sql = "UPDATE user SET nickname = :nickname, login = :login, password = :password, img_link = :img_link WHERE id = :id";            
+        } else {
+            $sql = "UPDATE user SET nickname = :nickname, login = :login, img_link = :img_link WHERE id = :id";
+        }
+        
+        $this->db->query($sql, [
+            'login' => $user->login,
+            'nickname' => $user->nickname,
+            'password' => $user->getPassword(),
+            'img_link' => $user->img_link,
+            'id' => $user->getId(),
+        ]);
     }
 }

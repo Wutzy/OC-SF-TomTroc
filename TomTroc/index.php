@@ -47,6 +47,11 @@ try {
             $bookController->updateBook();
             break;
 
+        case 'updateUser':
+            $userController = new UserController();
+            $userController->updateUser();
+            break;
+
         case 'myPublicAccount':
             $userController = new UserController();
             $userController->showMyAccountPage($_GET['user_id']);

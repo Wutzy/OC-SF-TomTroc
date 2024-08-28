@@ -507,7 +507,7 @@ nav{
     background-color: #FAF9F7;
 }
 .myAccount-container {
-    width: 1440px;
+    width: 1135px;
 }
 .user-infos{
     display: flex;
@@ -515,7 +515,7 @@ nav{
     margin-bottom: 30px;
 }
 .user-card{
-    width: 700px;
+    width: 547px;
     border-radius: 20px;
     background-color: white;display: flex;
     display: flex;
@@ -553,8 +553,8 @@ nav{
     flex-direction: column;
     align-items: center;
 }
-.user-infos form {
-   width: 100%; 
+.user-infos {
+    width: 100%;
 }
 .user-infos-nickname{
     color: #292929;
@@ -582,7 +582,7 @@ nav{
     margin-right: 5px;
 }
 .user-form{
-    width: 700px;
+    width: 555px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -875,11 +875,11 @@ tr .author {
     display: flex;
     justify-content: end;
 }
-.edit-book-image label, .edit-user-image label{
+.edit-book-image label{
     text-decoration: underline;
 }
 
-#book-image, #user-image {
+#book-image {
     width: 100px;
 	height: 20px;
 	opacity: 0;
@@ -887,8 +887,7 @@ tr .author {
 	position: absolute;
 	z-index: 99;
 }
-
-#book-image:hover, #user-image:hover {
+#book-image:hover {
     cursor: pointer;
 }
 

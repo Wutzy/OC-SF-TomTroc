@@ -11,9 +11,9 @@
                 <label for="nickname">Pseudo</label>
                 <input type="text" name="nickname" id="nickname" value="" required>
                 <label for="email">Adresse email</label>
-                <input type="text" name="email" id="email" value="" required>
+                <input type="email" name="email" id="email" value="" required>
                 <label for="password">Mot de passe</label>
-                <input type="text" name="password" id="password" value="" required>
+                <input type="password" name="password" id="password" value="" required>
                 <button class="btn btn-register">S'inscrire</button>
                 <p>Déjà inscrit ? <a href="index.php?action=showLogInPage">Connectez-vous</a></p>
             </div>

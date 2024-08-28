@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom Troc</title>
+    <link rel="stylesheet" href="Tom%20Troc_fichiers/style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            <a href="http://localhost:8888/TomTroc/index.php"><img src="Tom%20Troc_fichiers/logo.svg" alt="logo TomTroc" height="51" width="155"></a>
+            <div class="menu">
+                <div class="menu-left-side">
+                    <a href="http://localhost:8888/TomTroc/index.php">Accueil</a>
+                    <a href="http://localhost:8888/TomTroc/index.php?action=ourBooks">Nos livres à l'échange</a>
+                </div>
+                <div class="menu-right-side">
+                    
+                            <a href="http://localhost:8888/TomTroc/index.php?action=myMessages&amp;sender_id=0">Messagerie</a>
+                            <a href="http://localhost:8888/TomTroc/index.php?action=myAccount&amp;public=false&amp;id=2">Mon compte</a>
+                            <a href="http://localhost:8888/TomTroc/index.php?action=disconnectUser">Déconnexion</a>
+                                            </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="myAccount-section">
+    <div class="myAccount-container">
+        <h2>Mon compte</h2>
+        <div class="user-infos">
+            <form action="index.php" method="post" class="">
+                <div class="user-card">
+                    <div class="user-picture">
+                        <img src="Tom%20Troc_fichiers/aic-home.jpg" alt="">
+                        <a href="#">modifier</a>
+                    </div>
+                    <div class="user-line"></div>
+                    <div class="user-details">
+                        <div class="user-infos-nickname">User2</div>
+                        <div class="user-infos-seniority">Membre depuis ???</div>
+                        <div class="book-owner-label">BIBLIOTHEQUE</div>
+                        <div class="user-info-totalBooks">
+                            <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.46556 0.160154L7.2112 0.00251429C6.65202 -0.0365878 6.16701 0.385024 6.12791 0.944207L5.32192 12.4705C5.28281 13.0296 5.70442 13.5147 6.26361 13.5538L8.51796 13.7114C9.07715 13.7505 9.56215 13.3289 9.60125 12.7697L10.4072 1.24345C10.4464 0.684262 10.0247 0.199256 9.46556 0.160154ZM6.84113 0.99408C6.85269 0.828798 6.99605 0.70418 7.16133 0.715737L9.41568 0.873377C9.58096 0.884935 9.70558 1.02829 9.69403 1.19357L8.88803 12.7198C8.87647 12.8851 8.73312 13.0097 8.56783 12.9982L6.31348 12.8405C6.1482 12.829 6.02358 12.6856 6.03514 12.5203L6.84113 0.99408Z" fill="#292929"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.27482 0.0648067H1.01496C0.454414 0.0648067 0 0.519224 0 1.07977V12.6342C0 13.1947 0.454416 13.6491 1.01496 13.6491H3.27482C3.83537 13.6491 4.28979 13.1947 4.28979 12.6342V1.07977C4.28979 0.519221 3.83537 0.0648067 3.27482 0.0648067ZM0.714965 1.07977C0.714965 0.914086 0.849279 0.779771 1.01496 0.779771H3.27482C3.44051 0.779771 3.57482 0.914086 3.57482 1.07977V12.6342C3.57482 12.7999 3.44051 12.9342 3.27482 12.9342H1.01496C0.849279 12.9342 0.714965 12.7999 0.714965 12.6342V1.07977Z" fill="#292929"></path>
+                            </svg>
+                            8 livres
+                        </div>
+                    </div>
+                </div>
+                <div class="user-form">
+                    <h3>Vos informations personnelles</h3>
+                    <div class="registerFormGrid">
+                        <label for="email">Adresse email</label>
+                        <input type="email" name="email" id="email" value="user2" required="">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password" value="password" required="">
+                        <label for="nickname">Pseudo</label>
+                        <input type="text" name="nickname" id="nickname" value="User2" required="">
+                        <button class="btn btn-save">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="my-books">
+            <table class="myBooks-array">
+                <thead>
+                    <tr class="myBooks-array-header">
+                        <th scope="col">
+                        <a href="#">Photo</a>
+                        </th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Auteur</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Disponibilité</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Quatrième Livre</td>
+                            <td class="author">Matmatiu Anis</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IAA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=4">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Cinquième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=5">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Sixième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=6">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Neuvième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=9">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Onzième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=11">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Douzième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=12">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/user-image.jpg" height="50px" alt="">
+                            </td><td class="title">Treizième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=13">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                            <tr class="book-row">
+                            <td class="image"><img src="Tom%20Troc_fichiers/36bdc5ea4443cd8e42f22ec7d3884cbb.avif" height="50px" alt="">
+                            </td><td class="title">Quatorzième Livre</td>
+                            <td class="author">Hugo Victor</td>
+                            <td class="description"><p>Un livre écrit avec l'assistance d'une IA.</p></td>
+                            <td>
+                                <p class="badge_unavailable">non dispo.</p>                            </td>
+                            <td><div class="action"><a class="edit-button" href="http://localhost:8888/TomTroc/index.php?action=showUpdateBookForm&amp;book_id=14">Editer</a> <a class="delete-button" href="#">Supprimer</a></div></td>
+                        </tr>
+                                    </tbody>
+            </table>
+        </div>
+    </div>
+</section>    </main>
+
+    <footer>
+        <ul>
+            <li>Politique de confidentialité</li>
+            <li>Mentions légales</li>
+            <li>Tom Troc ©</li>
+            <li>
+                <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.0651287 4.50202C0.0976931 4.21437 0.113975 3.81546 0.113975 3.30528C0.113975 2.33378 0.0759835 1.23202 0 0C1.05834 0.0325644 2.87652 0.0488465 5.45453 0.0488465C8.02169 0.0488465 9.83172 0.0325644 10.8846 0C10.8087 1.23202 10.7707 2.33378 10.7707 3.30528C10.7707 3.81546 10.7869 4.21437 10.8195 4.50202H10.4369C10.0732 3.04205 9.60106 1.99185 9.02033 1.35142C8.44502 0.705561 7.82359 0.382631 7.15602 0.382631H7.13974V9.92399C7.13974 10.3907 7.18587 10.73 7.27813 10.9416C7.37583 11.1533 7.5495 11.2944 7.79916 11.365C8.04882 11.4355 8.44502 11.4708 8.98776 11.4708V11.8046C7.42467 11.772 6.20622 11.7557 5.33241 11.7557C4.54544 11.7557 3.40298 11.772 1.90501 11.8046V11.4708C2.44775 11.4708 2.84395 11.4355 3.09361 11.365C3.34327 11.2944 3.51424 11.1533 3.6065 10.9416C3.7042 10.73 3.75304 10.3907 3.75304 9.92399V0.382631H3.73676C3.05834 0.382631 2.43147 0.702847 1.85617 1.34328C1.28629 1.97828 0.816823 3.0312 0.44776 4.50202H0.0651287Z" fill="#00AC66"></path>
+                <path d="M11.1804 10.0596C11.2129 9.77199 11.2292 9.37307 11.2292 8.8629C11.2292 7.8914 11.1912 6.78964 11.1152 5.55762C12.1736 5.59018 13.9918 5.60646 16.5698 5.60646C19.1369 5.60646 20.947 5.59018 21.9999 5.55762C21.9239 6.78964 21.8859 7.8914 21.8859 8.8629C21.8859 9.37307 21.9022 9.77199 21.9347 10.0596H21.5521C21.1885 8.59967 20.7163 7.54947 20.1356 6.90904C19.5603 6.26318 18.9388 5.94025 18.2713 5.94025H18.255V15.4816C18.255 15.9484 18.3011 16.2876 18.3934 16.4992C18.4911 16.7109 18.6647 16.852 18.9144 16.9226C19.1641 16.9931 19.5603 17.0284 20.103 17.0284V17.3622C18.5399 17.3296 17.3215 17.3134 16.4476 17.3134C15.6607 17.3134 14.5182 17.3296 13.0202 17.3622V17.0284C13.563 17.0284 13.9592 16.9931 14.2088 16.9226C14.4585 16.852 14.6295 16.7109 14.7217 16.4992C14.8194 16.2876 14.8683 15.9484 14.8683 15.4816V5.94025H14.852C14.1736 5.94025 13.5467 6.26046 12.9714 6.9009C12.4015 7.5359 11.9321 8.58882 11.563 10.0596H11.1804Z" fill="#00AC66"></path>
+                </svg>
+            </li>
+        </ul>
+    </footer>
+</div>
+
+
+
+</body></html>

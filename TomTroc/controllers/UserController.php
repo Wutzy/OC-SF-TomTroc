@@ -100,8 +100,6 @@ class UserController
         $login = Utils::request("login");
         $password = Utils::request("password");
 
-        var_dump($login, $password);
-
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
@@ -110,10 +108,11 @@ class UserController
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
         $user = $userManager->getUserByLogin($login);
+
         if (!$user) {
             throw new Exception("L'utilisateur demandé n'existe pas.");
         }
-        var_dump(!password_verify($password, $user->getPassword()));
+
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -126,6 +125,45 @@ class UserController
 
         // On redirige vers la page d'administration.
         Utils::redirect("home");
+    }
+
+    /**
+     * Ajout et modification d'un user.
+     * On sait si un user est ajouté car l'id vaut -1.
+     * @return void
+     */
+    public function updateUser() : void
+    {
+        // On récupère les données du formulaire.
+        $id = Utils::request("id");
+        $nickname = Utils::request("nickname");
+        $login = Utils::request("login");
+        $img_link = empty(Utils::request("user-image")) ? Utils::request("current-user-image") : Utils::request("user-image");
+        $password = Utils::request("password");
+        if ($password !== "pass"){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        // On vérifie que les données sont valides.
+        if (empty($nickname) || empty($login) || empty($password) || empty($img_link)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        // On créé l'objet User.
+        $user = new User([
+            'id' => $id,
+            'nickname' => $nickname,
+            'login' => $login,
+            'password' => $password,
+            'img_link' => $img_link
+        ]);
+
+        // On ajoute le livre.
+        $userManager = new UserManager();
+        $userManager->updateUser($user);    
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("home", []);
     }
 
     /**
