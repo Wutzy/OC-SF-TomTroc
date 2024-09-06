@@ -81,6 +81,11 @@ try {
             $userController->showMyMessagesPage($sender);
             break;
 
+        case 'sendMessage':
+            $userController = new UserController();
+            $userController->addMessage();
+            break;
+
         case 'connectUser':
             $userController = new UserController();
             $userController->connectUser();

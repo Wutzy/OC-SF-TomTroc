@@ -21,7 +21,12 @@ class BookController
     public function showBooksCollection() : void
     {
         $bookManager = new BookManager();
-        $books = $bookManager->getAllBooks();
+        $keyword = Utils::request("searchBook");
+        if (!empty($keyword)) {
+            $books = $bookManager->getBooks($keyword);
+        } else {
+            $books = $bookManager->getAllBooks();
+        }
 
         $view = new View("Nos livres à l'échange");
         $view->render("ourBooks", ['books' => $books]);

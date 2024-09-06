@@ -7,7 +7,7 @@
  class User extends AbstractEntity
  {
     public string $nickname;
-    public string $img_link;
+    public ?string $img_link;
     public string $login;
     private string $password;
 

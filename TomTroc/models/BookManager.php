@@ -29,20 +29,21 @@ class BookManager extends AbstractEntityManager
             $newBook->owner = $owner;
 
             array_push($books, $newBook);
-
         }
 
         return $books;
     }
 
     /**
-     * Récupère tous les books ordonnés par une colone (titre ou date de création)
+     * Récupère tous les books qui contiennent dans leur titre la chaine de caractère recherchée
+     *
+     *
      * @return array : un tableau d'objets Book.
      */
-    public function getBooks(string $column = 'title', string $order = 'desc') : array
+    public function getBooks($keyword = null) : array
     {
-        $sql = "SELECT id, title, description, image, date_creation FROM book ORDER BY $column $order";
-        $result = $this->db->query($sql);
+        $sql = "SELECT * FROM book WHERE title like CONCAT('%', :keyword, '%')";
+        $result = $this->db->query($sql, ['keyword' => $keyword]);
         $books = [];
 
         while ($book = $result->fetch()) {

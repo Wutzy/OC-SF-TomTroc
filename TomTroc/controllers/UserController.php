@@ -67,14 +67,13 @@ class UserController
 
         if (!empty($sender)) {
             $allMessages = $messageManager->getConversationWithSomeone($sender->getId());
-            $img_link = $sender->img_link;
         }
 
         $view = new View("Mes messages");
         $view->render("mailBox", [
             'lastMessages' => $lastMessages,
             'allMessages' => $allMessages,
-            'imgSender' => $img_link
+            'sender' => $sender,
         ]);
     }
 
@@ -160,10 +159,42 @@ class UserController
 
         // On ajoute le livre.
         $userManager = new UserManager();
-        $userManager->updateUser($user);    
+        $userManager->updateUser($user);
 
         // On redirige vers la page d'administration.
         Utils::redirect("home", []);
+    }
+
+    /**
+     * Ajoute un message
+     * @return void
+     */
+    public function addMessage() : void
+    {
+        // On récupère les données du formulaire.
+        $content = Utils::request("content");
+        $id = Utils::request("id");
+        $recipient_id = Utils::request("recipient_id");
+
+        // On vérifie que les données sont valides.
+        if (empty($content)) {
+            return;
+        }
+
+        // On créé l'objet Message.
+        $userManager = new UserManager();
+        $message = new Message([
+            'content' => $content,
+            'sender' => $userManager->getUserById($_SESSION['idUser']),
+            'recipient_id' => $recipient_id,
+        ]);
+
+        // On ajoute le message.
+        $messageManager = new MessageManager();
+        $messageManager->addMessage($message);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("home", ['action' => 'myMessages', 'sender_id' => $recipient_id]);
     }
 
     /**

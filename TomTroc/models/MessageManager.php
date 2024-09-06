@@ -11,7 +11,7 @@ class MessageManager extends AbstractEntityManager
      */
     public function getConversationWithSomeone(int $sender_id) : array
     {
-        $sql = "SELECT * FROM message WHERE (message.recipient_id = :recipient_id AND message.sender_id = :sender_id) OR (message.sender_id = :recipient_id AND message.recipient_id = :sender_id) ORDER BY created_at DESC";
+        $sql = "SELECT * FROM message WHERE (message.recipient_id = :recipient_id AND message.sender_id = :sender_id) OR (message.sender_id = :recipient_id AND message.recipient_id = :sender_id) ORDER BY created_at";
         $result = $this->db->query($sql,
         [
             'sender_id' => $sender_id,
@@ -68,6 +68,21 @@ class MessageManager extends AbstractEntityManager
             return new User($user);
         }
         return null;
+    }
+
+    /**
+     * Créer un nouveau message.
+     * @param Message $message : le message à envoyer
+     * @return void
+     */
+    public function addMessage(Message $message) : void
+    {
+        $sql = "INSERT INTO message (sender_id, recipient_id, content, created_at) VALUES (:sender_id, :recipient_id, :content, NOW())";
+        $this->db->query($sql, [
+            'sender_id' => $message->sender->getId(),
+            'recipient_id' => $message->getRecipientId(),
+            'content' => $message->content,
+        ]);
     }
 
 }

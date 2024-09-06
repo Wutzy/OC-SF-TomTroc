@@ -11,7 +11,7 @@
     //public string $sender_nickname = "";
     public User $sender;
     private int $recipient_id;
-    public DateTime $created_at;
+    public ?DateTime $created_at;
 
     public string $content = "";
 

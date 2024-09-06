@@ -60,12 +60,11 @@ class UserManager extends AbstractEntityManager
      */
     public function addUser(User $user) : void
     {
-        $sql = "INSERT INTO user (nickname, login, password, img_link) VALUES (:nickname, :login, :password, :img_link)";
+        $sql = "INSERT INTO user (nickname, login, password) VALUES (:nickname, :login, :password)";
         $this->db->query($sql, [
             'nickname' => $user->nickname,
             'login' => $user->login,
             'password' => $user->getPassword(),
-            'img_link' => $user->img_link
         ]);
     }
 
@@ -77,11 +76,11 @@ class UserManager extends AbstractEntityManager
     public function updateUser(User $user) : void
     {
         if ($user->getPassword() !== 'pass') {
-            $sql = "UPDATE user SET nickname = :nickname, login = :login, password = :password, img_link = :img_link WHERE id = :id";            
+            $sql = "UPDATE user SET nickname = :nickname, login = :login, password = :password, img_link = :img_link WHERE id = :id";
         } else {
             $sql = "UPDATE user SET nickname = :nickname, login = :login, img_link = :img_link WHERE id = :id";
         }
-        
+
         $this->db->query($sql, [
             'login' => $user->login,
             'nickname' => $user->nickname,

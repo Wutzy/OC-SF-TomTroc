@@ -17,7 +17,7 @@
         <div class="user-infos">
 
             <div class="editBook-form">
-                <form action="index.php?action=updateBook" method="post" class="">
+                <form action="index.php?action=updateBook" method="post">
                     <div class="book-picture">
                         <div>Photo</div>
                         <img src="views/assets/user-images/<?= $book->image ?>" alt="">

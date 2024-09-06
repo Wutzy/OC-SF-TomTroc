@@ -34,7 +34,8 @@
             <div class="tchat-recipient">
                 <?php if (!empty($allMessages)) { ?>
                     <span><?php echo '
-                    <img src="' . $imgSender . '" width="38px" height="38px" alt="">'; ?></span>
+                    <img src="' . $sender->img_link . '" class="rounded-image" width="38px" height="38px" alt="">'; ?></span>
+                    <span><?= $sender->nickname ?></span>
                 <?php } ?>
 
             </div>
@@ -42,7 +43,7 @@
                 <?php foreach ($allMessages as $message) { ?>
                     <div class="message-row <?php if ($message->sender->getId() == $_SESSION['idUser']) {echo 'myself';} ?>">
                         <div class="date-message">
-                        <?php if ($message->sender->getId() !== $_SESSION['idUser']) { ?> <img src="<?= $message->sender->img_link ?>" width="38px" height="38px" alt=""><?php } ?><span><?= $message->created_at->format('d.m H:i') ?></span>
+                        <?php if ($message->sender->getId() !== $_SESSION['idUser']) { ?> <img src="<?= $message->sender->img_link ?>" class="rounded-image" width="38px" height="38px" alt=""><?php } ?><span><?= $message->created_at->format('d.m H:i') ?></span>
                         </div>
                         <div class="message-details">
                             <p><?= $message->content ?></p>
@@ -51,7 +52,11 @@
                 <?php } ?>
             </div>
             <div class="tchat-new-message">
-                <input type="text" placeholder="Taper votre message ici"><button class="btn btn-send-message">Envoyer</button>
+                <form action="index.php?action=sendMessage" method="post">
+                    <input type="text" placeholder="Taper votre message ici"  name="content" id="content" value="">
+                    <input type="hidden" name="recipient_id" id="recipient_id" value="<?= $sender->getId() ?>">
+                    <button class="btn btn-send-message">Envoyer</button>
+                </form>
             </div>
         </div>
     </div>

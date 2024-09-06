@@ -554,7 +554,7 @@ nav{
     align-items: center;
 }
 .user-infos form {
-   width: 100%; 
+   width: 100%;
 }
 .user-infos-nickname{
     color: #292929;
@@ -771,15 +771,24 @@ tr .author {
     background-color: #F5F3EF;
 }
 
+.tchat-recipient{
+    display: flex;
+    align-items: center;
+}
+
 .tchat-conversation {
     height: 550px;
     display: flex;
     flex-direction: column;
     justify-content: end;
+    overflow: scroll;
 }
 
 .tchat-new-message {
     padding-top: 130px;
+}
+.tchat-new-message form{
+    width: 100%;
     display: flex;
     gap: 21px;
 }
@@ -818,6 +827,10 @@ tr .author {
 .date-message img{
    border-radius: 50%;
    margin-right: 5px;
+}
+.rounded-image {
+    border-radius: 50%;
+    margin-right: 5px;
 }
 .message-details{
     display: flex;
