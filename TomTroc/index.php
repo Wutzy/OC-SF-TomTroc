@@ -52,14 +52,14 @@ try {
             $userController->updateUser();
             break;
 
-        case 'myPublicAccount':
+        case 'publicAccount':
             $userController = new UserController();
-            $userController->showMyAccountPage($_GET['user_id']);
+            $userController->showAccountPage();
             break;
 
         case 'myAccount':
             $userController = new UserController();
-            $userController->showMyAccountPage($_SESSION['idUser'], false);
+            $userController->showAccountPage(false);
             break;
 
         case 'myMessages':
