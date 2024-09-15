@@ -40,7 +40,6 @@ class MessageManager extends AbstractEntityManager
     {
         //$sql = "SELECT sender_id, content, created_at FROM message WHERE message.recipient_id = :id  GROUP BY sender_id ORDER BY created_at DESC";
         $sql = "SELECT m.sender_id, m.content, m.created_at FROM message m JOIN (SELECT sender_id, MAX(created_at) as date_recente FROM message GROUP BY sender_id) last_message ON m.sender_id = last_message.sender_id AND m.created_at = last_message.date_recente  WHERE m.recipient_id = :id ORDER BY m.created_at DESC";
-
         $result = $this->db->query($sql, ['id' => $_SESSION['idUser']]);
         $messages = [];
         while ($message = $result->fetch()) {

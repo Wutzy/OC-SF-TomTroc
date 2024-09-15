@@ -10,6 +10,7 @@
     public ?string $img_link;
     public string $login;
     private string $password;
+    public Datetime $registration_date;
 
     /**
      * Setter pour le pseudo de l'utilisateur.
@@ -39,6 +40,27 @@
     }
 
     /**
+     * Getter pour la date d'inscription de l'utilisateur.
+     * @return int
+     */
+    public function getRegistrationDate() : Datetime
+    {
+        return $this->registration_date;
+    }
+
+        /**
+     * Setter pour la date d'inscription de l'utilisateur.
+     * @param int $registration_date
+     */
+    public function setRegistrationDate(string|DateTime $registration_date, string $format = 'Y-m-d H:i:s') : void
+    {
+        if (is_string($registration_date)) {
+            $registration_date = DateTime::createFromFormat($format, $registration_date);
+        }
+        $this->registration_date = $registration_date;
+    }
+
+    /**
      * Getter pour l'image de l'utilisateur.
      * @return int
      */
@@ -46,6 +68,7 @@
     {
         return $this->img_link;
     }
+
     /**
      * Setter pour le login de l'utilisateur.
      * @param int $idUser

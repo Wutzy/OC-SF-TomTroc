@@ -74,6 +74,28 @@ nav{
 .menu a {
     margin-left: 20px;
 }
+.menu-right-side{
+    display: flex;
+}
+
+.messagerieMenu{
+    display:flex;
+    align-items: center;
+}
+.messagerieMenu svg{
+    margin-right: 5px;
+}
+.count-new-messages{
+    background-color: #292929;
+    color: white;
+    padding: 5px;
+    border-radius: 7px;
+    color: #F5F3EF;
+    font-family: Inter;
+    font-size: 8.25px;
+    font-style: normal;
+    margin-left: 5px;
+}
 /* Join us Section */
 .home-top-page {
     display: flex;
@@ -87,6 +109,12 @@ nav{
     width: 920px;
 }
 
+.img-joinus p{
+    float: right;
+    color:  #A6A6A6;
+    font-family: Inter;
+    font-size: 12px;
+}
 .joinus {
     display: flex;
     flex-direction: column;
@@ -146,7 +174,9 @@ nav{
 .last-book-img{
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
+
 .last-books-group{
     display:flex;
     margin: 30px 0 30px 0;
@@ -519,8 +549,13 @@ nav{
     border-radius: 20px;
     background-color: white;display: flex;
     display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 20px;
+}
+.user-card .btn{
+    width: 250px;
 }
 .user-picture{
     padding-top: 48px;
@@ -601,6 +636,14 @@ nav{
     width: 160px;
     height: 63px;
     font-size: 16px;
+    color: #00AC66;
+    border-radius: 10px;
+    border: 1px solid #00AC66;
+    background:  #F5F3EF;
+}
+.editFormGrid .btn-save{
+    background: #00AC66;
+    color: #FFF;
 }
 .badge_available{
     background-color: #6DC5A1;
@@ -712,6 +755,7 @@ tr .author {
     display: flex;
     justify-content: center;
     background-color: #FAF9F7;
+    padding-top: 80px;
 }
 .myPublicAccount-container {
     display: flex;
@@ -878,6 +922,9 @@ tr .author {
 }
 .editBook-form{
     width: 100%;
+    padding: 50px;
+    border-radius: 20px;
+    background: #FFF;
 }
 .editBook-form form, .user-infos form{
     display: flex;
@@ -903,6 +950,17 @@ tr .author {
 
 #book-image:hover, #user-image:hover {
     cursor: pointer;
+}
+
+.breadcrumb{
+    width: 100%;
+    padding-left: 80px;
+    color: #A6A6A6;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
 }
 
 

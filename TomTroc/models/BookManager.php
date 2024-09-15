@@ -22,8 +22,8 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql);
         $books = [];
         while ($book = $result->fetch()) {
-            $author = self::getAuthorByBookId($book['author_id']);
-            $owner = self::getOwnerByBookId($book['owner_id']);
+            $author = self::getAuthorByBookId($book['id']);
+            $owner = self::getOwnerByBookId($book['id']);
             $newBook = new Book($book);
             $newBook->author = $author;
             $newBook->owner = $owner;
@@ -35,7 +35,8 @@ class BookManager extends AbstractEntityManager
     }
 
     /**
-     * Récupère tous les books qui contiennent dans leur titre la chaine de caractère recherchée
+     * Récupère tous les books qui contiennent dans leur
+     * titre la chaine de caractère recherchée
      *
      *
      * @return array : un tableau d'objets Book.
@@ -47,8 +48,15 @@ class BookManager extends AbstractEntityManager
         $books = [];
 
         while ($book = $result->fetch()) {
-            $books[] = new Book($book);
+            $author = self::getAuthorByBookId($book['id']);
+            $owner = self::getOwnerByBookId($book['id']);
+            $newBook = new Book($book);
+            $newBook->author = $author;
+            $newBook->owner = $owner;
+
+            array_push($books, $newBook);
         }
+
         return $books;
     }
 
@@ -63,8 +71,8 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['id' => $id]);
         $book = $result->fetch();
         if ($book) {
-            $author = self::getAuthorByBookId($book['author_id']);
-            $owner = self::getOwnerByBookId($book['owner_id']);
+            $author = self::getAuthorByBookId($book['id']);
+            $owner = self::getOwnerByBookId($book['id']);
             $selectedBook = new Book($book);
             $selectedBook->author = $author;
             $selectedBook->owner = $owner;
@@ -81,7 +89,7 @@ class BookManager extends AbstractEntityManager
      */
     public function getAuthorByBookId(int $id) : ?Author
     {
-        $sql = "SELECT name, forname FROM author LEFT JOIN book ON author.id = book.author_id WHERE author.id = :id";
+        $sql = "SELECT name, forname FROM author LEFT JOIN book ON author.id = book.author_id WHERE book.id = :id";
         $result = $this->db->query($sql, ['id' => $id]);
         $author = $result->fetch();
         if ($author) {
@@ -109,14 +117,15 @@ class BookManager extends AbstractEntityManager
 
     /**
      * Récupère le propriétaire d'un livre à partir de son id
-     * @param int: id's book
+     * @param int $id_book: id's book
      * @return User|null : un objet User ou null si le propriétaire n'existe pas.
      */
-    public function getOwnerByBookId(int $id) : ?User
+    public function getOwnerByBookId(int $id_book) : ?User
     {
-        $sql = "SELECT nickname, img_link FROM user LEFT JOIN book ON user.id = book.owner_id WHERE user.id = :id";
-        $result = $this->db->query($sql, ['id' => $id]);
+        $sql = "SELECT u.* FROM user u LEFT JOIN book b ON u.id = b.owner_id WHERE b.id = :id_book";
+        $result = $this->db->query($sql, ['id_book' => $id_book]);
         $owner = $result->fetch();
+
         if ($owner) {
             return new User($owner);
         }
@@ -167,6 +176,7 @@ class BookManager extends AbstractEntityManager
             'description' => $book->description,
             'image' => $book->image,
             'author_id' => $book->author->getId(),
+            'availability' => $book->availability,
             'id' => $book->getId(),
         ]);
     }

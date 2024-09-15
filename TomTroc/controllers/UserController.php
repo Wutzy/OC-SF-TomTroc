@@ -25,26 +25,30 @@ class UserController
     /**
      * Affiche la page mon compte
      *
-     * @param int $user_id
      * @param bool $public
      *
      * @return void
      */
-    public function showMyAccountPage(int $user_id, $public = true, ) : void
+    public function showAccountPage($public = true) : void
     {
         $booksManager = new BookManager();
-        $books = $booksManager->getBooksByUserId($user_id);
+        $userManager = new UserManager();
 
         if (!$public){
             // On vérifie que l'utilisateur est connecté.
             $this->checkIfUserIsConnected();
-            $userManager = new UserManager();
+            $books = $booksManager->getBooksByUserId($_SESSION['idUser']);
             $user = $userManager->getUserById($_SESSION['idUser']);
             $view = new View("Page mon compte");
             $view->render("myAccount", ['books' => $books, 'user' => $user]);
         } else {
+            $books = $booksManager->getBooksByUserId($_GET['owner']);
+            $user = $userManager->getUserById($_GET['owner']);
+            $origin = new DateTimeImmutable($user->registration_date->format('Y-m-d'));
+            $target = new DateTimeImmutable("now");
+            $interval = $origin->diff($target);
             $view = new View("Page publique mon compte");
-            $view->render("myPublicAccount", ['books' => $books]);
+            $view->render("publicAccount", ['books' => $books, 'user' => $user, 'seniority' => $interval->format("%a") ]);
         }
     }
 
@@ -162,7 +166,7 @@ class UserController
         $userManager->updateUser($user);
 
         // On redirige vers la page d'administration.
-        Utils::redirect("home", []);
+        Utils::redirect("myAccount", []);
     }
 
     /**

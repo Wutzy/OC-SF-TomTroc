@@ -63,8 +63,8 @@ class BookController
 
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks(true);
-        if (!$book) {
-            throw new Exception("Le livre demandé n'existe pas.");
+        if (!$books) {
+            throw new Exception("L'utilisateur ne possède pas de livre.");
         }
 
         $view = new View("Mon compte");
@@ -140,7 +140,7 @@ class BookController
             'owner_id' => $_SESSION['idUser'],
             'availability' => $availability
         ]);
-        //var_dump($book);die;
+
         // On ajoute le livre.
         $bookManager = new BookManager();
         $bookManager->updateBook($book);
