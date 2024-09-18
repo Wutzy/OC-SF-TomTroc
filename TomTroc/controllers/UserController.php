@@ -39,8 +39,11 @@ class UserController
             $this->checkIfUserIsConnected();
             $books = $booksManager->getBooksByUserId($_SESSION['idUser']);
             $user = $userManager->getUserById($_SESSION['idUser']);
+            $origin = new DateTimeImmutable($user->registration_date->format('Y-m-d'));
+            $target = new DateTimeImmutable("now");
+            $interval = $origin->diff($target);
             $view = new View("Page mon compte");
-            $view->render("myAccount", ['books' => $books, 'user' => $user]);
+            $view->render("myAccount", ['books' => $books, 'user' => $user, 'seniority' => $interval->format("%a")]);
         } else {
             $books = $booksManager->getBooksByUserId($_GET['owner']);
             $user = $userManager->getUserById($_GET['owner']);
@@ -61,19 +64,18 @@ class UserController
      */
     public function showMyMessagesPage($sender = null) : void
     {
+
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
+        $view = new View("Mes messages");
         $messageManager = new MessageManager();
-        $lastMessages = $messageManager->getAllSendersByUserId();
+        $lastMessages = [];
         $allMessages = [];
-        $img_link = '';
-
-        if (!empty($sender)) {
+        $lastMessages = $messageManager->getAllSendersByUserId();
+        if(!empty($lastMessages) && !empty($sender)){
             $allMessages = $messageManager->getConversationWithSomeone($sender->getId());
         }
-
-        $view = new View("Mes messages");
         $view->render("mailBox", [
             'lastMessages' => $lastMessages,
             'allMessages' => $allMessages,
@@ -119,7 +121,7 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect. : $hash");
+            throw new Exception("Le mot de passe est incorrect.");
         }
 
         // On connecte l'utilisateur.
@@ -167,6 +169,38 @@ class UserController
 
         // On redirige vers la page d'administration.
         Utils::redirect("myAccount", []);
+    }
+
+    /**
+     * Ajoute un utilisateur
+     * @return void
+     */
+    public function addUser() : void
+    {
+        // On récupère les données du formulaire.
+        $nickname = Utils::request("nickname");
+        $login = Utils::request("login");
+        $password = Utils::request("password");
+
+        // On vérifie que les données sont valides.
+        if (empty($login | $nickname | $password)) {
+            return;
+        }
+
+        // On créé l'objet User.
+        $userManager = new UserManager();
+        $user = new User([
+            'nickname' => $nickname,
+            'login' => $login,
+            'password' => $password,
+        ]);
+
+        // On ajoute l'utilisateur.
+        $userManager = new UserManager();
+        $userManager->addUser($user);
+
+        // On redirige vers la page de connexion.
+        Utils::redirect("showLogInPage");
     }
 
     /**

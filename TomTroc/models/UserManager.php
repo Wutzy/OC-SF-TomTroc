@@ -60,11 +60,13 @@ class UserManager extends AbstractEntityManager
      */
     public function addUser(User $user) : void
     {
-        $sql = "INSERT INTO user (nickname, login, password, registration_date) VALUES (:nickname, :login, :password, NOW())";
+        $sql = "INSERT INTO user (nickname, login, password, registration_date, img_link) VALUES (:nickname, :login, :password, NOW(), :img_link)";
+        $hashpsw = password_hash($user->getPassword(), PASSWORD_DEFAULT);
         $this->db->query($sql, [
             'nickname' => $user->nickname,
             'login' => $user->login,
-            'password' => $user->getPassword()
+            'password' => $hashpsw,
+            'img_link' => ''
         ]);
     }
 

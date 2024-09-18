@@ -10,7 +10,7 @@
     public ?string $img_link;
     public string $login;
     private string $password;
-    public Datetime $registration_date;
+    public ?Datetime $registration_date;
 
     /**
      * Setter pour le pseudo de l'utilisateur.
