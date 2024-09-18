@@ -14,7 +14,7 @@
                     <a href="index.php?action=myMessages&sender_id=<?= $lastmessage->sender->getId() ?>">
                         <div class="message-preview-row <?php if ($lastmessage->sender->getId() == $_GET['sender_id']) {echo 'active';} ?>">
                             <div class="message-preview-picture">
-                                <img src="views/assets/user-images/<?= $lastmessage->sender->img_link ?>" width="48px" height="48px" alt="">
+                                <img src="views/assets/user-images/<?= $lastmessage->sender->img_link ?>" width="48px" height="48px" alt="Photo de profil de l'utilisateur <?= $lastmessage->sender->nickname ?>">
                             </div>
                             <div class="message-preview-group">
                                 <div class="message-preview-header">
@@ -34,7 +34,7 @@
             <div class="tchat-recipient">
                 <?php if (!empty($allMessages)) { ?>
                     <span><?php echo '
-                    <img src="views/assets/user-images/' . $sender->img_link . '" class="rounded-image" width="38px" height="38px" alt="">'; ?></span>
+                    <img src="views/assets/user-images/' . $sender->img_link . '" class="rounded-image" width="38px" height="38px" alt="Photo de profil de l\'utilisateur ' . $lastmessage->sender->nickname . '">'; ?></span>
                     <span><?= $sender->nickname ?></span>
                 <?php } ?>
             </div>
@@ -42,7 +42,7 @@
                 <?php foreach ($allMessages as $message) { ?>
                     <div class="message-row <?php if ($message->sender->getId() == $_SESSION['idUser']) {echo 'myself';} ?>">
                         <div class="date-message">
-                        <?php if ($message->sender->getId() !== $_SESSION['idUser']) { ?> <img src="views/assets/user-images/<?= $message->sender->img_link ?>" class="rounded-image" width="38px" height="38px" alt=""><?php } ?><span><?= $message->created_at->format('d.m H:i') ?></span>
+                        <?php if ($message->sender->getId() !== $_SESSION['idUser']) { ?> <img src="views/assets/user-images/<?= $message->sender->img_link ?>" class="rounded-image" width="38px" height="38px" alt="Photo de profil de l'utilisateur <?= $lastmessage->sender->nickname ?>"><?php } ?><span><?= $message->created_at->format('d.m H:i') ?></span>
                         </div>
                         <div class="message-details">
                             <p><?= $message->content ?></p>
@@ -52,6 +52,7 @@
             </div>
             <div class="tchat-new-message">
                 <form action="index.php?action=sendMessage" method="post">
+                    <label for="content" class="hidden-label">Entrer votre message</label>
                     <input type="text" placeholder="Taper votre message ici"  name="content" id="content" value="">
                     <input type="hidden" name="recipient_id" id="recipient_id" value="<?= $sender->getId() ?>">
                     <button class="btn btn-send-message">Envoyer</button>

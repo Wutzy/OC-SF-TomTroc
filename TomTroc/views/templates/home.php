@@ -14,11 +14,11 @@
                 <p>Donnez une nouvelle vie à vos livres en les échangeant avec d'autres amoureux de la lecture.
                     Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.
                 </p>
-                <button class="btn btn-save">Découvrir</button>
+                <button class="btn btn-save btn-discover">Découvrir</button>
             </div>
         </div>
         <div class="img-joinus">
-            <img src="views/assets/home-img.jpg" width="404px" height="539px" alt="">
+            <img src="views/assets/home-img.jpg" width="404px" height="539px" alt="Un homme lit un livre en étant entouré d'un grand nombre d'entre eux">
             <div>
                 <p>Hamza</p>
             </div>
@@ -32,7 +32,7 @@
             <?php foreach($books as $book) { ?>
                 <div class="card-book">
                     <a class="info" href="index.php?action=showBook&id=<?= $book->getId() ?>">
-                        <img src="views/assets/book_picture/<?= $book->image ?>" alt="une image" class="last-book-img">
+                        <img src="views/assets/book_picture/<?= $book->image ?>" alt="Photo du livre <?= $book->title ?>" class="last-book-img">
                         <div class="card-content">
                             <div class="last-books-title"><p><?= $book->title ?></p></div>
                             <div class="last-books-author"><p><?= $book->author->name .' ' . $book->author->forname ?></p></div>
@@ -80,7 +80,7 @@
 </section>
 <section class="values-section grey-bg">
     <div class="banner">
-        <img src="views/assets/home-books-banner.png" alt="">
+        <img src="views/assets/home-books-banner.png" alt="Une femme de dos devant une bibliothèque">
     </div>
     <div class="values">
         <div class="values-title">

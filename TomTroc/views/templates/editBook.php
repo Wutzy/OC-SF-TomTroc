@@ -20,23 +20,23 @@
                 <form action="index.php?action=updateBook" method="post">
                     <div class="book-picture">
                         <div>Photo</div>
-                        <img src="views/assets/book_picture/<?= $book->image ?>" alt="">
+                        <img src="views/assets/book_picture/<?= $book->image ?>" alt="Photo du livre <?= $book->title ?>">
                         <div class="edit-book-image">
                             <input type="hidden" id="current-book-image" name="current-book-image" value="<?= $book->image ?>">
+                            <label for="book-image" class="">Modifier la photo</label>
                             <input type="file" id="book-image" name="book-image" placeholder="Modifier l'image">
-                            <label for="file" class="">Modifier la photo</label>
                         </div>
                     </div>
                     <div class="editFormGrid registerFormGrid">
-                        <label for="email">Titre</label>
+                        <label for="title">Titre</label>
                         <input type="text" name="title" id="title" value="<?= $book->title ?>" required>
                         <label for="firstname">Nom de l'auteur</label>
                         <input type="text" name="firstname" id="firstname" value="<?= $book->author->name?>" required>
                         <label for="lastname">Prenom de l'auteur</label>
                         <input type="text" name="lastname" id="lastname" value="<?= $book->author->forname ?>" required>
-                        <label for="nickname">Description</label>
+                        <label for="description">Description</label>
                         <textarea name="description" id="description" required><?= $book->description ?></textarea>
-                        <label for="nickname">Disponibilité</label>
+                        <label for="availability">Disponibilité</label>
                         <select type="select" name="availability" id="availability">
                             <option value="1" <?php if ($book->availability == 1) { echo 'selected';} ?>>disponible</option>
                             <option value="0" <?php if ($book->availability == 0) { echo 'selected';} ?>>indisponible</option>

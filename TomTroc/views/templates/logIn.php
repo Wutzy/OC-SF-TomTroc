@@ -17,7 +17,7 @@
             </div>
         </form>
         <div class="login-picture">
-            <img src="views/assets/dd6bbafe9a461f128299f90d445728dd.jpg">
+            <img src="views/assets/dd6bbafe9a461f128299f90d445728dd.jpg" alt="Bibliothèque remplie de livres">
         </div>
     </div>
 </section>

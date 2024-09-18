@@ -9,7 +9,7 @@
         <div class="user-infos">
             <div class="user-card">
                 <div class="user-picture">
-                    <img src="views/assets/user-images/<?= $user->img_link ?>" alt="">
+                    <img src="views/assets/user-images/<?= $user->img_link ?>" alt="Image de profil de l'utilisateur <?= $user->nickname ?>">
                 </div>
                 <div class="user-line"></div>
                 <div class="user-details">
@@ -42,7 +42,7 @@
                 <tbody>
                     <?php foreach ($books as $book) { ?>
                         <tr class="book-row">
-                            <td class="image"><img src="views/assets/book_picture/<?= $book->image ?>" height="78px" width="78px" alt=""></th>
+                            <td class="image"><img src="views/assets/book_picture/<?= $book->image ?>" height="78px" width="78px" alt="Photo du livre <?= $book->title ?>"></th>
                             <td class="title"><?= $book->title ?></td>
                             <td class="author"><?= $book->author->name . ' ' . $book->author->forname ?></td>
                             <td class="description"><p><?= $book->description ?></p></td>

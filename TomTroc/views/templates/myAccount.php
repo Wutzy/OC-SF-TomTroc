@@ -10,11 +10,11 @@
             <form action="index.php?action=updateUser" method="post" class="">
                 <div class="user-card">
                     <div class="user-picture">
-                        <img src="views/assets/user-images/<?= $user->img_link ?>" alt="">
+                        <img src="views/assets/user-images/<?= $user->img_link ?>" alt="Image de profil de l'utilisateur <?= $user->nickname ?>">
                         <div class="edit-user-image">
                             <input type="hidden" id="current-user-image" name="current-user-image" value="<?= $user->img_link ?>">
                             <input type="file" id="user-image" name="user-image" placeholder="modifier">
-                            <label for="file" class="">modifier</label>
+                            <label for="user-image" class="">modifier</label>
                         </div>
                     </div>
                     <div class="user-line"></div>
@@ -34,7 +34,7 @@
                 <div class="user-form">
                     <h3>Vos informations personnelles</h3>
                     <div class="registerFormGrid">
-                        <label for="email">Adresse email</label>
+                        <label for="login">Adresse email</label>
                         <input type="email" name="login" id="login" value="<?= $user->login ?>" required>
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" value="password" minlength="6" required>
@@ -63,7 +63,7 @@
                 <tbody>
                     <?php foreach ($books as $book) { ?>
                         <tr class="book-row">
-                            <td class="image"><img src="views/assets/book_picture/<?= $book->image ?>" height="100px" width="100px" alt=""></th>
+                            <td class="image"><img src="views/assets/book_picture/<?= $book->image ?>" height="100px" width="100px" alt="Photo du livre <?= $book->title ?>"></th>
                             <td class="title"><?= $book->title ?></td>
                             <td class="author"><?= $book->author->name . ' ' . $book->author->forname ?></td>
                             <td class="description"><p><?= $book->description ?></p></td>

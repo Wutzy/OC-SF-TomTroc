@@ -5,10 +5,9 @@
 ?>
 <section class="book-details">
     <div class="book-details-container">
-
         <div class="book-details-picture">
         <div class="breadcrumb">Nos livre > <?= $book->title ?></div>
-            <img src="views/assets/book_picture/<?= $book->image ?>">
+            <img src="views/assets/book_picture/<?= $book->image ?>" alt="Photo du livre <?= $book->title ?>">
         </div>
         <div class="book-details-informations">
             <h2 class="book-title"><?= Utils::format($book->title) ?></h2>
@@ -20,7 +19,7 @@
             <p class="book-description"><?= Utils::format($book->description) ?></p>
             <p class="book-owner-label">Propriétaire</p>
             <a href="index.php?action=publicAccount&owner=<?= $book->owner->getId() ?>" class="owner-card">
-                <img src="views/assets/user-images/<?= $book->owner->img_link ?>" alt="">
+                <img src="views/assets/user-images/<?= $book->owner->img_link ?>" alt="Image de profil de l'utilisateur <?= $book->owner->nickname ?>">
                 <p class="owner-nickname">
                     <?= Utils::format($book->owner->nickname) ?>
                 </p>

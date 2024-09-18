@@ -10,16 +10,16 @@
             <div class="registerFormGrid">
                 <label for="nickname">Pseudo</label>
                 <input type="text" name="nickname" id="nickname" value="" required>
-                <label for="email">Adresse email</label>
+                <label for="login">Adresse email</label>
                 <input type="email" name="login" id="login" value="" required>
                 <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" value="" required>
+                <input type="password" name="password" id="password" minlength="6" value="" required>
                 <button class="btn btn-register">S'inscrire</button>
                 <p>Déjà inscrit ? <a href="index.php?action=showLogInPage">Connectez-vous</a></p>
             </div>
         </form>
         <div class="login-picture">
-            <img src="views/assets/dd6bbafe9a461f128299f90d445728dd.jpg">
+            <img src="views/assets/dd6bbafe9a461f128299f90d445728dd.jpg" alt="Bibliothèque remplie de livres">
         </div>
     </div>
 </section>
