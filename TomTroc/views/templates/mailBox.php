@@ -37,7 +37,6 @@
                     <img src="views/assets/user-images/' . $sender->img_link . '" class="rounded-image" width="38px" height="38px" alt="">'; ?></span>
                     <span><?= $sender->nickname ?></span>
                 <?php } ?>
-
             </div>
             <div class="tchat-conversation">
                 <?php foreach ($allMessages as $message) { ?>

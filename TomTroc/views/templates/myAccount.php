@@ -20,7 +20,7 @@
                     <div class="user-line"></div>
                     <div class="user-details">
                         <div class="user-infos-nickname"><?= $user->nickname ?></div>
-                        <div class="user-infos-seniority">Membre depuis ???</div>
+                        <div class="user-infos-seniority">Membre depuis <?= $seniority ?> jours</div>
                         <div class="book-owner-label">BIBLIOTHEQUE</div>
                         <div class="user-info-totalBooks">
                             <svg width="11" height="14" viewBox="0 0 11 14" fill="none" xmlns="http://www.w3.org/2000/svg">
