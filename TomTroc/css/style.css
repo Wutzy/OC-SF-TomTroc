@@ -78,9 +78,10 @@ nav{
     display: flex;
 }
 
-.messagerieMenu{
+.menu-right-side .messagerieMenu{
     display:flex;
     align-items: center;
+    margin-left: 5px;
 }
 .messagerieMenu svg{
     margin-right: 5px;
@@ -748,7 +749,13 @@ tr .author {
 .delete-button{
     color: #CB2D2D;
 }
+.btn-discover
+{
+    margin-bottom: 30px;
+    background: #00AC66;
+    color: #FFFFFF;
 
+}
 /** My Public account page **/
 
 .myPublicAccount-section {
@@ -759,7 +766,8 @@ tr .author {
 }
 .myPublicAccount-container {
     display: flex;
-    width: 100% ;
+    width: 1440px;
+    gap: 30px;
     justify-content: space-around;
 }
 
@@ -843,6 +851,9 @@ tr .author {
     border: none;
     border-radius: 6px;
     background-color: #FFF;
+}
+.hidden-label{
+    display: none;
 }
 .tchat-new-message input::placeholder{
     color: #A6A6A6;
