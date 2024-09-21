@@ -27,16 +27,15 @@
                             </div>
                         </div>
                     </a>
-                <?php } ?>
+                <?php } if (empty($lastMessages)) { ?> <p>Aucun message reçu.</p><?php } ?>
             </div>
         </div>
         <div class="tchat">
             <div class="tchat-recipient">
-                <?php if (!empty($allMessages)) { ?>
-                    <span><?php echo '
-                    <img src="views/assets/user-images/' . $sender->img_link . '" class="rounded-image" width="38px" height="38px" alt="Photo de profil de l\'utilisateur ' . $lastmessage->sender->nickname . '">'; ?></span>
-                    <span><?= $sender->nickname ?></span>
-                <?php } ?>
+                <span>
+                    <img src="views/assets/user-images/<?=$sender->img_link ?>" class="rounded-image" width="38px" height="38px" alt="Photo de profil de l'utilisateur <?= $sender->nickname ?>">
+                </span>
+                <span><?= $sender->nickname ?></span>
             </div>
             <div class="tchat-conversation">
                 <?php foreach ($allMessages as $message) { ?>
@@ -48,7 +47,7 @@
                             <p><?= $message->content ?></p>
                         </div>
                     </div>
-                <?php } ?>
+                <?php } if (empty($allMessages)) { ?> <p>Aucun messages reçu pour l'instant, n'hésitez pas à aller parler aux autres membres !</p><?php }?>
             </div>
             <div class="tchat-new-message">
                 <form action="index.php?action=sendMessage" method="post">

@@ -3,10 +3,10 @@
      *  Page de détails d'un livre
      */
 ?>
+<div class="breadcrumb"><div>Nos livre > <?= $book->title ?></div></div>
 <section class="book-details">
     <div class="book-details-container">
         <div class="book-details-picture">
-        <div class="breadcrumb">Nos livre > <?= $book->title ?></div>
             <img src="views/assets/book_picture/<?= $book->image ?>" alt="Photo du livre <?= $book->title ?>">
         </div>
         <div class="book-details-informations">

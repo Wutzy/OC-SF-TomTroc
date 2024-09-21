@@ -39,7 +39,7 @@
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" value="password" minlength="6" required>
                         <label for="nickname">Pseudo</label>
-                        <input type="text" name="nickname" id="nickname" value="<?= $user->nickname ?>" required>
+                        <input type="text" name="nickname" id="nickname" value="<?= $user->nickname ?>" minlength="3" required>
                         <input type="hidden" name="id" id="id" value="<?= $user->getId() ?>">
                         <button class="btn btn-save">Enregistrer</button>
                     </div>

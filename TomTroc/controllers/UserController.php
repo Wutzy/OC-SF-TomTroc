@@ -73,13 +73,36 @@ class UserController
         $lastMessages = [];
         $allMessages = [];
         $lastMessages = $messageManager->getAllSendersByUserId();
-        if(!empty($lastMessages) && !empty($sender)){
+        if(!empty($sender)){
             $allMessages = $messageManager->getConversationWithSomeone($sender->getId());
         }
         $view->render("mailBox", [
             'lastMessages' => $lastMessages,
             'allMessages' => $allMessages,
             'sender' => $sender,
+        ]);
+    }
+
+        /**
+     * Affiche la page mon compte
+     *
+     *
+     * @return void
+     */
+    public function showMyEmptyMessagesPage() : void
+    {
+
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        $view = new View("Mes messages");
+        $lastMessages = [];
+        $allMessages = [];
+
+        $view->render("mailBox", [
+            'lastMessages' => $lastMessages,
+            'allMessages' => $allMessages,
+            'sender' => $sender
         ]);
     }
 
@@ -115,13 +138,13 @@ class UserController
         $user = $userManager->getUserByLogin($login);
 
         if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            throw new Exception("Identifiants incorrects.");
         }
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect." . $hash);
+            throw new Exception("Identifiants incorrects.");
         }
 
         // On connecte l'utilisateur.
@@ -145,7 +168,7 @@ class UserController
         $login = Utils::request("login");
         $img_link = empty(Utils::request("user-image")) ? Utils::request("current-user-image") : Utils::request("user-image");
         $password = Utils::request("password");
-        if ($password !== "pass"){
+        if ($password !== "password"){
             $password = password_hash($password, PASSWORD_DEFAULT);
         }
 

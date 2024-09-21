@@ -77,18 +77,23 @@ class UserManager extends AbstractEntityManager
      */
     public function updateUser(User $user) : void
     {
-        if ($user->getPassword() !== 'pass') {
+        if ($user->getPassword() !== 'password') {
             $sql = "UPDATE user SET nickname = :nickname, login = :login, password = :password, img_link = :img_link WHERE id = :id";
+            $this->db->query($sql, [
+                'login' => $user->login,
+                'nickname' => $user->nickname,
+                'password' => $user->getPassword(),
+                'img_link' => $user->img_link,
+                'id' => $user->getId(),
+            ]);
         } else {
             $sql = "UPDATE user SET nickname = :nickname, login = :login, img_link = :img_link WHERE id = :id";
+            $this->db->query($sql, [
+                'login' => $user->login,
+                'nickname' => $user->nickname,
+                'img_link' => $user->img_link,
+                'id' => $user->getId(),
+            ]);
         }
-
-        $this->db->query($sql, [
-            'login' => $user->login,
-            'nickname' => $user->nickname,
-            'password' => $user->getPassword(),
-            'img_link' => $user->img_link,
-            'id' => $user->getId(),
-        ]);
     }
 }

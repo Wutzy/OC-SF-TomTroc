@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="img-joinus">
-            <img src="views/assets/home-img.jpg" width="404px" height="539px" alt="Un homme lit un livre en étant entouré d'un grand nombre d'entre eux">
+            <img src="views/assets/home-img.jpg" width="404" height="539" alt="Un homme lit un livre en étant entouré d'un grand nombre d'entre eux">
             <div>
                 <p>Hamza</p>
             </div>

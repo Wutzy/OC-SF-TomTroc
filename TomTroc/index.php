@@ -69,25 +69,30 @@ try {
             if($_GET['sender_id'] == $_SESSION['idUser']) {
                 $_GET['sender_id'] = 0;
             }
-            $isConversationExist = $messageManager->getConversationWithSomeone($_GET['sender_id']);
 
-            // Cas où l'utilisateur a déjà envoyer ou reçu un message
-            if (!empty($isConversationExist) | $_GET['sender_id'] == 0) {
+            if ($_GET['sender_id'] == 0) {
                 // On récupère l'id du destinaire qui a envoyé le message le plus récent
                 $last_message = $messageManager->getAllSendersByUserId();
-                $last_sender_id = $last_message[0]->sender->getId();
-                // Cas où on a cliqué sur une conversation
-                if ($_GET['sender_id'] != 0)
-                {
-                    $sender = $messageManager->getSenderById($_GET['sender_id']);
-                } else {
-                    // cas où on passe par le menu, par defaut on affiche le message le plus récent
-                    $_GET['sender_id'] = $last_sender_id;
+                if (!empty($last_message)) {
+                    $last_sender_id = $last_message[0]->sender->getId();
+                    // if($last_sender_id == $_SESSION['idUser']) {
+                    //     $last_message[0]->sender = $messageManager->getSenderById($last_message[0]->recipient_id);
+                    //     $last_sender_id = $last_message[0]->sender->getId();
+                    // }
                     $sender = $messageManager->getSenderById($last_sender_id);
+                } else
+                // Compte vierge
+                {
+                    $sender = $messageManager->getSenderById($_SESSION['idUser']);
+                    //return $userController->showMyMessagesPage($sender);
                 }
+            } else {
+                // Cas où l'utilisateur a déjà envoyé ou reçu un message
+                $sender = $messageManager->getSenderById($_GET['sender_id']);
             }
-
-            $userController->showMyMessagesPage($sender);
+            if (isset($sender)) {
+                $userController->showMyMessagesPage($sender);
+            }
             break;
 
         case 'registerUser':
